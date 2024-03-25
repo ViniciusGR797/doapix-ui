@@ -4,20 +4,51 @@ import { Inter } from "next/font/google";
 import styles from "./styles.module.scss";
 import logo from "../../../public/logo.png";
 import { Input } from "../../components/ui/Input";
-import { useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { FiUser, FiMail } from "react-icons/fi";
 import children from "../../../public/children.jpg";
 import hands from "../../../public/hands.jpg";
+import { toast } from "react-toastify";
+import Link from "next/link";
+import { AuthContext } from "@/contexts/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function SignUp() {
+    const { signUp } = useContext(AuthContext);
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
     const [loading, setLoading] = useState(false);
+
+    async function handleSignUp(event: FormEvent){
+      event.preventDefault();
+  
+      if(name === '' || email === '' || password === ''){
+        toast.warning("Preencha todos os campos para continuar!");
+        return;
+      }
+
+      if(password !== repeatPassword){
+        toast.error("Senhas não coincidem!");
+        return;
+      }
+  
+      setLoading(true);
+  
+      let data = {
+        name,
+        email,
+        password
+      }
+  
+      await signUp(data);
+  
+      setLoading(false);
+    }
 
   return (
     <>
@@ -33,7 +64,7 @@ export default function SignUp() {
         <div className={styles.containerCenter}>
           <Image src={logo} alt="doa-pix logo" height={200}/>
           <div className={styles.login}>
-            <form className={styles.form}>
+            <form className={styles.form} onSubmit={handleSignUp}>
               <h1>Cadastro</h1>
               <Input placeholder="Nome" type="text" value={name} onChange={ (e) => setName(e.target.value)} />
               <Input placeholder="Email" type="text" value={email} onChange={ (e) => setEmail(e.target.value)} />
@@ -42,8 +73,8 @@ export default function SignUp() {
               <Button type="submit" loading={false} style={{ marginTop: '7%' }}>Criar</Button>
               <div className={styles.linha}>
               <FiUser size={20} style={{ verticalAlign: 'middle', marginBottom: '2px' }} />
-              <a> Já Possui uma conta?</a>
-                <button className={styles.touchableOpacity} >Fazer Login</button>
+                <span> Já Possui uma conta?</span>
+                <Link href="/" className={styles.touchableOpacity} >Fazer Login</Link>
               </div>
             </form>
           </div>

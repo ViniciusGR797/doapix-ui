@@ -57,7 +57,7 @@
         margin-top: 8%;
     }
 
-    a{
+    span{
         padding-top: 10%;
         padding-bottom: 3%;
     }
@@ -106,6 +106,7 @@
     margin-top: 8%;
     opacity: 0.9;
     transition: all 0.5s;
+    text-decoration: none;
   }
   
   .touchableOpacity:hover {
