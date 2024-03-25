@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/Button";
 import { FiUser, FiMail } from "react-icons/fi";
 import children from "../../public/children.jpg";
 import hands from "../../public/hands.jpg";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -39,7 +40,7 @@ export default function Home() {
               <a>Ou continue como</a>
               <button className={styles.buttonAnonimo}>Doador anonimo</button>
               <div className={styles.linha}>
-                <button className={styles.touchableOpacity}> <FiUser size={20} style={{ verticalAlign: 'middle', marginBottom: '1px' }}/> Criar Conta</button>
+                <Link href="/sign-up" className={styles.touchableOpacity}> <FiUser size={20} style={{ verticalAlign: 'middle', marginBottom: '1px' }}/> Criar Conta</Link>
                 <button className={styles.touchableOpacity}> <FiMail size={20} style={{ verticalAlign: 'middle', marginBottom: '2px' }}/> Esqueci senha</button>
               </div>
             </form>
