@@ -1,0 +1,115 @@
+.mainDiv {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .leftBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-image: url('../../../public/children.jpg');
+    background-size: cover;
+  }
+  
+  .rightBackground {
+    position: absolute;
+    top: 0;
+    right: 0; 
+    width: 50%; 
+    height: 100%;
+    background-image: url('../../../public/hands.jpg');
+    background-size: cover;
+  }
+  
+  .containerCenter {
+    position: relative;
+    min-height: 100%;
+    min-width: 33%;
+    max-width: 600px;
+    padding: 20px;
+    z-index: 1;
+    border-radius: 5%;
+    background-color: var(--fundo);
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .login {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+
+    .linha{
+        border: none; 
+        height: 0.8px; 
+        background-color: var(--detalhe); 
+        margin-top: 8%;
+    }
+
+    a{
+        padding-top: 10%;
+        padding-bottom: 3%;
+    }
+  }
+  
+  .form {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h1{
+        margin-bottom: 7%;
+    }
+  }
+  
+  @media(max-width: 720px) {
+    .login {
+      width: 90%;
+    }
+  
+    .Photo {
+      display: none; 
+    }
+  }
+  
+  .buttonAnonimo {
+    font-weight: bold;
+    width: 75%;
+    height: 50px;
+    background-color: var(--detalhe);
+    border: 0;
+    padding: 0.4rem;
+    color: var(--clara);
+    border-radius: 0.8rem;
+  }
+  
+  .touchableOpacity {
+    color: var(--detalhe);
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    margin: 0 1.8rem; 
+    display: inline-block; 
+    margin-top: 8%;
+    opacity: 0.9;
+    transition: all 0.5s;
+  }
+  
+  .touchableOpacity:hover {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  
