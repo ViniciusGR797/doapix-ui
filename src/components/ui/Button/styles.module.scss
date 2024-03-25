@@ -1,10 +1,11 @@
 .button{
-    max-width: 600px;
+    width: 75%;
+    height: 50px;
     background-color: var(--detalhe);
     border: 0;
     padding: 0.4rem;
-    color: var(--dark-900);
-    border-radius: 0.7rem;
+    color: var(--clara);
+    border-radius: 2rem;
     transition: filter 0.2s;
 
     //Loading true ? Acessa essa animação do spinner

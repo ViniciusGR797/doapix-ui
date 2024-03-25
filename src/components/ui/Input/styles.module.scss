@@ -1,7 +1,15 @@
 .input{
     margin-bottom: 1rem; //16 px
-    height: 40px;
-    border: 0;
-    border-radius: 0.7rem;
-    background-color: white;
+    height: 50px;
+    border-width: 1px;
+    border-radius: 2rem;
+    border-style: double;
+    border-color: var(--fundoSec);
+    background-color: transparent;
+    padding: 1.2rem;
+    width: 75%;
+}
+
+.input::placeholder{
+    color: #666766;
 }

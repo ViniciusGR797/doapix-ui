@@ -22,22 +22,25 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
-        <div className={styles.login}>
-          <Image src={logo} alt="doa-pix logo" />
-          <form className={styles.form}>
-              <h1>Login</h1>
-              <Input placeholder="Email" type="text" value={email} onChange={ (e) => setEmail(e.target.value)} />
-              <Input placeholder="Senha" type="password" value={password} onChange={ (e) => setPassword(e.target.value)} />
-              <Button type="submit" loading={false}>Entrar</Button>
-              <a>Ou continue como</a>
-              <button>Doador anonimo</button>
+        <div className={styles.containerCenter}>
+          <Image src={logo} alt="doa-pix logo" height={200}/>
+          <div className={styles.login}>
+            <form className={styles.form}>
+                <h1>Login</h1>
+                <Input placeholder="Email" type="text" value={email} onChange={ (e) => setEmail(e.target.value)} />
+                <Input placeholder="Senha" type="password" value={password} onChange={ (e) => setPassword(e.target.value)} />
+                <Button type="submit" loading={false}>Entrar</Button>
+                <a>Ou continue como</a>
+                <button className={styles.buttonAnonimo}>Doador anonimo</button>
 
-            <div>
-              <button>Criar Conta</button>
-              <button>Esqueci senha</button>
-            </div>
-          </form>
-        </div>
+                <div>
+                  <button className={styles.touchableOpacity}>Criar Conta</button>
+                  <button className={styles.touchableOpacity}>Esqueci senha</button>
+                </div>
+            </form>
+          </div>
+          </div>
+          
     </>
   );
 }
