@@ -9,9 +9,9 @@ import { Button } from "@/components/ui/Button";
 import { FiUser, FiMail } from "react-icons/fi";
 import children from "../../../public/children.jpg";
 import hands from "../../../public/hands.jpg";
-import { toast } from "react-toastify";
 import Link from "next/link";
 import { AuthContext } from "@/contexts/AuthContext";
+import { toast } from "react-toastify";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,7 +27,11 @@ export default function SignUp() {
     async function handleSignUp(event: FormEvent){
       event.preventDefault();
   
-      if(name === '' || email === '' || password === ''){
+      if(name === '' || email === '' || password === '' || repeatPassword === ''){
+        console.log("name: " + name)
+        console.log("email: " + email)
+        console.log("password: " + password)
+        console.log("repeat: " + repeatPassword)
         toast.warning("Preencha todos os campos para continuar!");
         return;
       }
@@ -70,7 +74,7 @@ export default function SignUp() {
               <Input placeholder="Email" type="text" value={email} onChange={ (e) => setEmail(e.target.value)} />
               <Input placeholder="Senha" type="password" value={password} onChange={ (e) => setPassword(e.target.value)} />
               <Input placeholder="Repita a senha" type="password" value={repeatPassword} onChange={ (e) => setRepeatPassword(e.target.value)} />
-              <Button type="submit" loading={false} style={{ marginTop: '7%' }}>Criar</Button>
+              <Button type="submit" loading={loading} style={{ marginTop: '7%' }}>Criar</Button>
               <div className={styles.linha}>
               <FiUser size={20} style={{ verticalAlign: 'middle', marginBottom: '2px' }} />
                 <span> Já Possui uma conta?</span>
