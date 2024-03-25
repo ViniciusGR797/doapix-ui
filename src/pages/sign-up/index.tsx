@@ -20,23 +20,23 @@ export default function SignUp() {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [repeatPassword, setRepeatPassword] = useState('');
+    const [pwd, setPwd] = useState('');
+    const [repeatPwd, setRepeatPwd] = useState('');
     const [loading, setLoading] = useState(false);
 
     async function handleSignUp(event: FormEvent){
       event.preventDefault();
   
-      if(name === '' || email === '' || password === '' || repeatPassword === ''){
+      if(name === '' || email === '' || pwd === '' || repeatPwd === ''){
         console.log("name: " + name)
         console.log("email: " + email)
-        console.log("password: " + password)
-        console.log("repeat: " + repeatPassword)
+        console.log("pwd: " + pwd)
+        console.log("repeat: " + repeatPwd)
         toast.warning("Preencha todos os campos para continuar!");
         return;
       }
 
-      if(password !== repeatPassword){
+      if(pwd !== repeatPwd){
         toast.error("Senhas não coincidem!");
         return;
       }
@@ -46,7 +46,7 @@ export default function SignUp() {
       let data = {
         name,
         email,
-        password
+        pwd
       }
   
       await signUp(data);
@@ -72,8 +72,8 @@ export default function SignUp() {
               <h1>Cadastro</h1>
               <Input placeholder="Nome" type="text" value={name} onChange={ (e) => setName(e.target.value)} />
               <Input placeholder="Email" type="text" value={email} onChange={ (e) => setEmail(e.target.value)} />
-              <Input placeholder="Senha" type="password" value={password} onChange={ (e) => setPassword(e.target.value)} />
-              <Input placeholder="Repita a senha" type="password" value={repeatPassword} onChange={ (e) => setRepeatPassword(e.target.value)} />
+              <Input placeholder="Senha" type="password" value={pwd} onChange={ (e) => setPwd(e.target.value)} />
+              <Input placeholder="Repita a senha" type="password" value={repeatPwd} onChange={ (e) => setRepeatPwd(e.target.value)} />
               <Button type="submit" loading={loading} style={{ marginTop: '7%' }}>Criar</Button>
               <div className={styles.linha}>
               <FiUser size={20} style={{ verticalAlign: 'middle', marginBottom: '2px' }} />

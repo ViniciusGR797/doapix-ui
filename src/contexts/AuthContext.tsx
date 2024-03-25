@@ -20,7 +20,7 @@ type UserProps = {
 
 type SignInProps = {
   email: string;
-  password: string;
+  pwd: string;
 }
 
 type AuthProviderProps = {
@@ -30,7 +30,7 @@ type AuthProviderProps = {
 type SignUpProps = {
   name: string;
   email: string;
-  password: string;
+  pwd: string;
 }
 
 export const AuthContext = createContext({} as AuthContextData)
@@ -70,11 +70,11 @@ export function AuthProvider({ children }: AuthProviderProps){
     }
   }, [])
 
-  async function signIn( { email, password }: SignInProps){
+  async function signIn( { email, pwd }: SignInProps){
     try{
       const response = await api.post('/session', {
         email,
-        password
+        pwd
       })
 
       const { id, name, token } = response.data;
@@ -104,12 +104,12 @@ export function AuthProvider({ children }: AuthProviderProps){
     }
   }
 
-  async function signUp( {name, email, password}: SignUpProps){
+  async function signUp( {name, email, pwd}: SignUpProps){
     try{
       const response = await api.post('/users/', {
         name,
         email,
-        password
+        pwd
       })
 
       toast.success("Cadastrado com sucesso!")
@@ -118,7 +118,7 @@ export function AuthProvider({ children }: AuthProviderProps){
 
     }catch(err){
       toast.error("Erro ao cadastrar!")
-      console.log("ERRO"+err)
+      console.log("ERRO "+err)
     }
   }
 
