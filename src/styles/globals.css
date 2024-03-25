@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+}
+
+/* Variaveis scss globais */
+:root{
+    --clara: #FFF8F8;
+    --detalhe: #FA5252;
+    --fundoSec: #F28080;
+    --fundo: #EAD6D1;
+    --fonte: #666766;
+    --fonteDark: #000000;
+}   
+
+button{
+    cursor: pointer;
+}
+
+body{
+    background-color: var(--fundo);
+}
+
+body, input, textarea, select, button{
+    font: 400 1rem sans-serif;
+}
+
+@media (max-width: 720px){
+    html{
+        font-size: 87.5%;
+    }
+}
+
+@media(max-width: 1080px){
+    html{
+        font-size: 93.75%;
+    }
+}

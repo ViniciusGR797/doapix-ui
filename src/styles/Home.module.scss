@@ -1,0 +1,26 @@
+.login{
+    margin-top: 2rem;
+    width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+
+    h1{
+        color: var(--fonteDark);
+        padding-bottom: 2rem;
+    }
+}
+
+.form{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+@media(max-width: 720px){
+    .login{
+        width: 90%;
+    }
+}
