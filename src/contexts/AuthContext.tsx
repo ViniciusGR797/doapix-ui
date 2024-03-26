@@ -98,9 +98,9 @@ export function AuthProvider({ children }: AuthProviderProps){
       //Depois de logar, redirecionar o usuario até a home do doapix
       Router.push('/home')
 
-    }catch(err){
-      toast.error("Erro ao acessar!");
-      console.log("ERRO AO ACESSAR ", err)
+    }catch(error: any){
+      const errorMsg = error.response?.data?.msg;
+      toast.error(errorMsg)
     }
   }
 
