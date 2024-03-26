@@ -12,47 +12,49 @@ import donation from "../../../public/donation.jpg";
 import Link from "next/link";
 import { AuthContext } from "@/contexts/AuthContext";
 import { toast } from "react-toastify";
+import { validateFields } from "../../utils/validate";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function SignUp() {
-    const { signUp } = useContext(AuthContext);
+  const { signUp } = useContext(AuthContext);
 
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [pwd, setPwd] = useState('');
-    const [repeatPwd, setRepeatPwd] = useState('');
-    const [loading, setLoading] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [pwd, setPwd] = useState('');
+  const [repeatPwd, setRepeatPwd] = useState('');
+  const [loading, setLoading] = useState(false);
 
-    async function handleSignUp(event: FormEvent){
-      event.preventDefault();
-  
-      if(name === '' || email === '' || pwd === '' || repeatPwd === ''){
-        console.log("name: " + name)
-        console.log("email: " + email)
-        console.log("pwd: " + pwd)
-        console.log("repeat: " + repeatPwd)
-        toast.warning("Preencha todos os campos para continuar!");
-        return;
-      }
+  async function handleSignUp(event: FormEvent) {
+    event.preventDefault();
 
-      if(pwd !== repeatPwd){
-        toast.error("Senhas não coincidem!");
-        return;
-      }
-  
-      setLoading(true);
-  
-      let data = {
-        name,
-        email,
-        pwd
-      }
-  
-      await signUp(data);
-  
-      setLoading(false);
+    const errorMessage = validateFields({
+      name: name,
+      email: email,
+      pwd: pwd,
+    });
+    if (errorMessage !== null) {
+      toast.warning(errorMessage);
+      return;
     }
+
+    if (pwd !== repeatPwd) {
+      toast.error("Senhas não coincidem!");
+      return;
+    }
+
+    setLoading(true);
+
+    let data = {
+      name,
+      email,
+      pwd
+    }
+
+    await signUp(data);
+
+    setLoading(false);
+  }
 
   return (
     <>
@@ -63,27 +65,27 @@ export default function SignUp() {
       </Head>
 
       <div className={styles.mainDiv}>
-        
+
 
         <div className={styles.containerCenter}>
-          <Image src={logo} alt="doa-pix logo" height={200}/>
+          <Image src={logo} alt="doa-pix logo" height={200} />
           <div className={styles.login}>
             <form className={styles.form} onSubmit={handleSignUp}>
               <h1>Cadastro</h1>
-              <Input placeholder="Nome" type="text" value={name} onChange={ (e) => setName(e.target.value)} />
-              <Input placeholder="Email" type="text" value={email} onChange={ (e) => setEmail(e.target.value)} />
-              <Input placeholder="Senha" type="password" value={pwd} onChange={ (e) => setPwd(e.target.value)} />
-              <Input placeholder="Repita a senha" type="password" value={repeatPwd} onChange={ (e) => setRepeatPwd(e.target.value)} />
+              <Input placeholder="Nome" type="text" value={name} onChange={(e) => setName(e.target.value)} />
+              <Input placeholder="Email" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <Input placeholder="Senha" type="password" value={pwd} onChange={(e) => setPwd(e.target.value)} />
+              <Input placeholder="Repita a senha" type="password" value={repeatPwd} onChange={(e) => setRepeatPwd(e.target.value)} />
               <Button type="submit" loading={loading} style={{ marginTop: '7%' }}>Criar</Button>
               <div className={styles.linha}>
-              <FiUser size={20} style={{ verticalAlign: 'middle', marginBottom: '2px' }} />
+                <FiUser size={20} style={{ verticalAlign: 'middle', marginBottom: '2px' }} />
                 <span> Já Possui uma conta?</span>
                 <Link href="/" className={styles.touchableOpacity} >Fazer Login</Link>
               </div>
             </form>
           </div>
         </div>
-        
+
         <div className={styles.rightBackground}>
           <Image src={donation} alt="donation" layout="fill" objectFit="cover" />
         </div>
@@ -92,7 +94,7 @@ export default function SignUp() {
           <Image src={children} alt="children-smiling" layout="fill" objectFit="cover" />
         </div>
 
-        
+
       </div>
     </>
   );

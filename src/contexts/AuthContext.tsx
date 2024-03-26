@@ -116,9 +116,9 @@ export function AuthProvider({ children }: AuthProviderProps){
 
       Router.push('/')
 
-    }catch(err){
-      toast.error("Erro ao cadastrar!")
-      console.log("ERRO "+err)
+    }catch(error: any){
+      const errorMsg = error.response?.data?.msg;
+      toast.error("Erro ao cadastrar! "+errorMsg)
     }
   }
 
