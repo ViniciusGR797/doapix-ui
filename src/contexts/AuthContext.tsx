@@ -72,14 +72,14 @@ export function AuthProvider({ children }: AuthProviderProps){
 
   async function signIn( { email, pwd }: SignInProps){
     try{
-      const response = await api.post('/session', {
+      const response = await api.post('/users/login', {
         email,
         pwd
       })
 
-      const { id, name, token } = response.data;
+      const { id, name, access_token } = response.data;
 
-      setCookie(undefined, '@nextauth.token', token, {
+      setCookie(undefined, '@nextauth.token', access_token, {
         maxAge: 60 * 60 * 24 * 30, //1 mes de validação do token
         path: "/" //Quais caminhos terao acesso ao cookie, colocando apenas / todos terão
       })
@@ -91,7 +91,7 @@ export function AuthProvider({ children }: AuthProviderProps){
       })
 
       //Passar para as outras requisicoes o token junto:
-      api.defaults.headers['Authorization'] = `Bearer ${token}`
+      api.defaults.headers['Authorization'] = `Bearer ${access_token}`
 
       toast.success("Logado com sucesso!");
 

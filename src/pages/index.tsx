@@ -4,19 +4,49 @@ import { Inter } from "next/font/google";
 import styles from "../styles/Home.module.scss";
 import logo from "../../public/logo.png";
 import { Input } from "../components/ui/Input";
-import { useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { FiUser, FiMail } from "react-icons/fi";
 import children from "../../public/children.jpg";
 import donation from "../../public/donation.jpg";
 import Link from "next/link";
+import { validateFields } from "@/utils/validate";
+import { toast } from "react-toastify";
+import { AuthContext } from "@/contexts/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const { signIn } = useContext(AuthContext);
+
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [pwd, setPwd] = useState('');
   const [loading, setLoading] = useState(false);
+
+  async function handleSignIn(event: FormEvent){
+    event.preventDefault();
+
+    const errorMessage = validateFields({
+      email: email,
+      pwd: pwd,
+    });
+
+    if (errorMessage !== null) {
+      toast.warning(errorMessage);
+      return;
+    }
+
+    setLoading(true);
+
+    let data = {
+      email,
+      pwd
+    }
+
+    await signIn(data);
+
+    setLoading(false);
+  }
 
   return (
     <>
@@ -32,11 +62,11 @@ export default function Home() {
         <div className={styles.containerCenter}>
           <Image src={logo} alt="doa-pix logo" height={200}/>
           <div className={styles.login}>
-            <form className={styles.form}>
+            <form className={styles.form} onSubmit={handleSignIn}>
               <h1>Login</h1>
               <Input placeholder="Email" type="text" value={email} onChange={ (e) => setEmail(e.target.value)} />
-              <Input placeholder="Senha" type="password" value={password} onChange={ (e) => setPassword(e.target.value)} />
-              <Button type="submit" loading={false} style={{ marginTop: '4%' }}>Entrar</Button>
+              <Input placeholder="Senha" type="password" value={pwd} onChange={ (e) => setPwd(e.target.value)} />
+              <Button type="submit" loading={loading} style={{ marginTop: '4%' }}>Entrar</Button>
               <a>Ou continue como</a>
               <button className={styles.buttonAnonimo}>Doador anonimo</button>
               <div className={styles.linha}>
