@@ -8,7 +8,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { FiUser, FiMail } from "react-icons/fi";
 import children from "../../public/children.jpg";
-import hands from "../../public/hands.jpg";
+import donation from "../../public/donation.jpg";
 import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -48,7 +48,7 @@ export default function Home() {
         </div>
         
         <div className={styles.rightBackground}>
-          <Image src={hands} alt="hands" layout="fill" objectFit="cover" />
+          <Image src={donation} alt="donation" layout="fill" objectFit="cover" />
         </div>
 
         <div className={styles.leftBackground}>
