@@ -85,6 +85,57 @@
       display: none; 
     }
   }
+
+  @media (max-width: 720px) {
+  .mainDiv {
+    flex-direction: column;
+  }
+
+  .leftBackground,
+  .rightBackground {
+    width: 100%;
+    height: 50vh; 
+  }
+
+  .containerCenter {
+    width: 100%; 
+  }
+
+  .login {
+    padding: 1rem; 
+  }
+
+  .buttonAnonimo {
+    width: 100%; 
+  }
+
+  .linha{
+    border: none; 
+    height: none; 
+    background-color: var(--detalhe); 
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: center;
+  }
+
+  .containerCenter{
+    border-radius: 0;
+  }
+
+  .touchableOpacity{
+    margin-top: 15%;
+    padding-top: 10%;
+    display: inline-block; 
+    margin-top: 19%;
+    opacity: 0.7;
+    transition: all 0.5s;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
   
   .buttonAnonimo {
     font-weight: bold;
