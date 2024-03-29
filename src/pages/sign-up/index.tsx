@@ -65,27 +65,6 @@ export default function SignUp() {
       </Head>
 
       <div className={styles.mainDiv}>
-
-
-        <div className={styles.containerCenter}>
-          <Image src={logo} alt="doa-pix logo" height={200} />
-          <div className={styles.login}>
-            <form className={styles.form} onSubmit={handleSignUp}>
-              <h1>Cadastro</h1>
-              <Input placeholder="Nome" type="text" value={name} onChange={(e) => setName(e.target.value)} />
-              <Input placeholder="Email" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-              <Input placeholder="Senha" type="password" value={pwd} onChange={(e) => setPwd(e.target.value)} />
-              <Input placeholder="Repita a senha" type="password" value={repeatPwd} onChange={(e) => setRepeatPwd(e.target.value)} />
-              <Button type="submit" loading={loading} style={{ marginTop: '7%' }}>Criar</Button>
-              <div className={styles.linha}>
-                <FiUser size={20} style={{ verticalAlign: 'middle', marginBottom: '2px' }} />
-                <span> Já Possui uma conta?</span>
-                <Link href="/" className={styles.touchableOpacity} >Fazer Login</Link>
-              </div>
-            </form>
-          </div>
-        </div>
-
         <div className={styles.rightBackground}>
           <Image src={donation} alt="donation" layout="fill" objectFit="cover" />
         </div>
@@ -94,7 +73,25 @@ export default function SignUp() {
           <Image src={children} alt="children-smiling" layout="fill" objectFit="cover" />
         </div>
 
-
+        <div className={styles.containerCenter}>
+          <Image className={styles.logo} src={logo} alt="doa-pix logo" height={130} />
+          <div className={styles.login}>
+            <h1>Cadastro</h1>
+            <form className={styles.form} onSubmit={handleSignUp}>
+              <Input placeholder="Nome" type="text" value={name} onChange={(e) => setName(e.target.value)} />
+              <Input placeholder="Email" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <Input placeholder="Senha" type="password" value={pwd} onChange={(e) => setPwd(e.target.value)} />
+              <Input placeholder="Repita a senha" type="password" value={repeatPwd} onChange={(e) => setRepeatPwd(e.target.value)} />
+              <Button type="submit" loading={loading} style={{ marginTop: '7%' }}>Criar</Button>
+              <div className={styles.line}></div>
+            </form>
+            <div className={styles.footer}>
+              <FiUser size={20} style={{ verticalAlign: 'middle', marginBottom: '2px' }} />
+              <span> Já Possui uma conta?</span>
+              <Link href="/" className={styles.touchableOpacity} >Fazer Login</Link>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

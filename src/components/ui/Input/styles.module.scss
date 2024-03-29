@@ -1,5 +1,5 @@
-.input{
-    margin-bottom: 1rem; //16 px
+.input {
+    margin-bottom: 2rem; //16 px
     height: 50px;
     border-width: 1px;
     border-radius: 2rem;
@@ -10,6 +10,18 @@
     width: 75%;
 }
 
-.input::placeholder{
+.input::placeholder {
     color: #666766;
+}
+
+@media (max-width: 600px) {
+    .input {
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-height: 1000px) {
+    .input {
+        margin-bottom: 1rem;
+    }
 }
