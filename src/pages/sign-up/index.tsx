@@ -86,8 +86,10 @@ export default function SignUp() {
               <div className={styles.line}></div>
             </form>
             <div className={styles.footer}>
-              <FiUser size={20} style={{ verticalAlign: 'middle', marginBottom: '2px' }} />
-              <span> Já Possui uma conta?</span>
+              <div>
+                <FiUser size={20} style={{ verticalAlign: 'middle', marginBottom: '2px' }} />
+                <span> Já Possui uma conta?</span>
+              </div>
               <Link href="/" className={styles.touchableOpacity} >Fazer Login</Link>
             </div>
           </div>
