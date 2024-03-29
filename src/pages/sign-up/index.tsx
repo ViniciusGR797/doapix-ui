@@ -86,7 +86,7 @@ export default function SignUp() {
               <div className={styles.line}></div>
             </form>
             <div className={styles.footer}>
-              <div>
+              <div className={styles.footerCenter}>
                 <FiUser size={20} style={{ verticalAlign: 'middle', marginBottom: '2px' }} />
                 <span> Já Possui uma conta?</span>
               </div>

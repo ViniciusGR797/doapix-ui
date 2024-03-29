@@ -35,16 +35,16 @@ type SignUpProps = {
 
 export const AuthContext = createContext({} as AuthContextData)
 
-export function signOut(){
-  try{
+export function signOut() {
+  try {
     destroyCookie(undefined, '@nextauth.token')
     Router.push('/')
-  }catch{
+  } catch {
     alert("Erro ao deslogar")
   }
 }
 
-export function AuthProvider({ children }: AuthProviderProps){
+export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<UserProps>()
   const isAuthenticated = !!user;
 
@@ -53,7 +53,7 @@ export function AuthProvider({ children }: AuthProviderProps){
     const { '@nextauth.token': token } = parseCookies();
 
     //Carregar as informações do usuario na pagina 
-    if(token){
+    if (token) {
       api.get('/').then(response => {
         const { id, name, email } = response.data;
 
@@ -63,15 +63,15 @@ export function AuthProvider({ children }: AuthProviderProps){
           email
         })
       })
-      .catch( () => {
-        //Se der algum erro deve deslogar usuario
-        signOut();
-      })
+        .catch(() => {
+          //Se der algum erro deve deslogar usuario
+          signOut();
+        })
     }
   }, [])
 
-  async function signIn( { email, pwd }: SignInProps){
-    try{
+  async function signIn({ email, pwd }: SignInProps) {
+    try {
       const response = await api.post('/users/login', {
         email,
         pwd
@@ -87,7 +87,7 @@ export function AuthProvider({ children }: AuthProviderProps){
       setUser({
         id,
         name,
-        email 
+        email
       })
 
       //Passar para as outras requisicoes o token junto:
@@ -98,14 +98,14 @@ export function AuthProvider({ children }: AuthProviderProps){
       //Depois de logar, redirecionar o usuario até a home do doapix
       Router.push('/home')
 
-    }catch(error: any){
+    } catch (error: any) {
       const errorMsg = error.response?.data?.msg;
       toast.error(errorMsg)
     }
   }
 
-  async function signUp( {name, email, pwd}: SignUpProps){
-    try{
+  async function signUp({ name, email, pwd }: SignUpProps) {
+    try {
       const response = await api.post('/users/', {
         name,
         email,
@@ -116,13 +116,13 @@ export function AuthProvider({ children }: AuthProviderProps){
 
       Router.push('/')
 
-    }catch(error: any){
+    } catch (error: any) {
       const errorMsg = error.response?.data?.msg;
-      toast.error("Erro ao cadastrar! "+errorMsg)
+      toast.error("Erro ao cadastrar! " + errorMsg)
     }
   }
 
-  return(
+  return (
     <AuthContext.Provider value={{ user, isAuthenticated, signIn, signOut, signUp }}>
       {children}
     </AuthContext.Provider>

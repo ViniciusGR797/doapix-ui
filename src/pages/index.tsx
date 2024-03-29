@@ -76,7 +76,7 @@ export default function Home() {
             </form>
             <div className={styles.areaAnonimo}>
               <a>Ou continue como</a>
-              <button className={styles.buttonAnonimo}>Doador anonimo</button>
+              <button className={styles.buttonAnonimo}><Link className={styles.linkAnonimo} href="/home">Doador anônimo</Link></button>
               <div className={styles.line}></div>
             </div>
             <div className={styles.footer}>
