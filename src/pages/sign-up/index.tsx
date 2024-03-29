@@ -82,7 +82,7 @@ export default function SignUp() {
               <Input placeholder="Email" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
               <Input placeholder="Senha" type="password" value={pwd} onChange={(e) => setPwd(e.target.value)} />
               <Input placeholder="Repita a senha" type="password" value={repeatPwd} onChange={(e) => setRepeatPwd(e.target.value)} />
-              <Button type="submit" loading={loading} style={{ marginTop: '7%' }}>Criar</Button>
+              <Button type="submit" loading={loading} style={{ marginTop: '1.5%' }}>Criar</Button>
               <div className={styles.line}></div>
             </form>
             <div className={styles.footer}>
