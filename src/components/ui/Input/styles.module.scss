@@ -11,7 +11,7 @@
 }
 
 .input::placeholder {
-    color: #666766;
+    color: var(--fonte);
 }
 
 @media (max-width: 600px) {

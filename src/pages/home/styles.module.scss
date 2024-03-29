@@ -1,0 +1,72 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.headerMenu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.headerLogo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .logo {
+        height: 80px;
+        width: auto;
+        margin: 2rem;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+}
+
+.headerButton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    gap: 2vw;
+    margin-right: 2rem;
+}
+
+.search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 70%;
+    height: 50px;
+
+    border-width: 1px;
+    border-radius: 2rem;
+    border-style: double;
+    border-color: var(--fundoSec);
+    background-color: transparent;
+    padding-left: 1rem;
+    padding-right: 2rem;
+}
+
+.inputSearch {
+    text-align: center;
+    width: 100%;
+    border: 0;
+    background-color: transparent;
+    margin-left: 1rem;
+    color: var(--fonte);
+}
+
+.filter {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    gap: 2vw;
+    margin-right: 2rem;
+}

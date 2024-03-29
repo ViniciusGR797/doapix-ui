@@ -28,7 +28,9 @@ input,
 textarea,
 select,
 button {
-    font: 400 1rem sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
 }
 
 @media (max-width: 720px) {

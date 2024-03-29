@@ -59,7 +59,7 @@ export default function SignUp() {
   return (
     <>
       <Head>
-        <title>DoaPix - Login</title>
+        <title>Cadastro</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
