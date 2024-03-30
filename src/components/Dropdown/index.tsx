@@ -8,7 +8,7 @@ interface DropdownProps {
   defaultOption?: string;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ options, onSelect, defaultOption }) => {
+const Dropdown: React.FC<DropdownProps> = ({ options, onSelect, defaultOption, ...rest }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selectedOption, setSelectedOption] = useState<string | null>(defaultOption || null);
 
@@ -23,7 +23,7 @@ const Dropdown: React.FC<DropdownProps> = ({ options, onSelect, defaultOption })
   };
 
   return (
-    <div className={styles.dropdown}>
+    <div className={styles.dropdown} {...rest} >
       <button className={styles.dropdownToggle} onClick={handleToggle}>
         {selectedOption || defaultOption || 'Selecione uma opção'}
         {isOpen ? <RiArrowDropUpLine size={35} /> : <RiArrowDropDownLine size={35} />}                     

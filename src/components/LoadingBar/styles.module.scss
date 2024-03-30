@@ -1,0 +1,15 @@
+.percentage {
+    height: 9px;
+    border-width: 1px;
+    border-radius: 2rem;
+    border-style: solid;
+    border-color: var(--fonteDark);
+    background-color: transparent;
+}
+
+.fillPercentage {
+    height: 100%;
+    border-radius: 2rem;
+    background-color: var(--detalhe);
+    transition: width 0.5s ease;
+}
