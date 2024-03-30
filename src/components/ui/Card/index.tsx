@@ -1,24 +1,31 @@
 import styles from './styles.module.scss'
 import React from 'react';
+import Image from "next/image";
 
 interface CardProps {
-  urlImage: string;
-  name: string;
-  description: string;
-  percentage: number;
+    urlImage: string;
+    name: string;
+    description: string;
+    percentage: number;
 }
 
 const Card: React.FC<CardProps> = ({ urlImage, name, description, percentage }) => {
-  return (
-    <div className="card">
-      <img src={urlImage} alt={name} />
-      <div className="card-details">
-        <h2>{name}</h2>
-        <p>{description}</p>
-        <p>Percentage: {percentage}%</p>
-      </div>
-    </div>
-  );
+    return (
+        <div className={styles.card} >
+            <div className={styles.image}>
+                <Image src={urlImage} alt={name} layout="fill" objectFit="cover" style={{ borderRadius: "2rem" }} />
+            </div>
+
+            <div className={styles.cardDetails} >
+                <h2>{name}</h2>
+                <p>{description}</p>
+                <span style={{ display: 'block', textAlign: 'right', marginBottom: '0.3rem' }}>{percentage}%</span>
+                <div className={styles.percentage}>
+                    <div className={styles.fillPercentage} style={{ width: `${percentage}%` }} ></div>
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default Card;

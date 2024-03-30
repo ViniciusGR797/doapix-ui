@@ -70,3 +70,12 @@
     gap: 2vw;
     margin-right: 2rem;
 }
+
+.listCards {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+}
