@@ -10,6 +10,9 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ urlImage, name, description, percentage }) => {
+    const adjustedTextPercentage = Math.max(percentage, 0);
+    const adjustedPercentage = Math.min(Math.max(percentage, 0), 100);
+    
     return (
         <div className={styles.card} >
             <div className={styles.image}>
@@ -19,9 +22,9 @@ const Card: React.FC<CardProps> = ({ urlImage, name, description, percentage }) 
             <div className={styles.cardDetails} >
                 <h2>{name}</h2>
                 <p>{description}</p>
-                <span style={{ display: 'block', textAlign: 'right', marginBottom: '0.3rem' }}>{percentage}%</span>
+                <span style={{ display: 'block', textAlign: 'right', marginBottom: '0.3rem' }}>{adjustedTextPercentage}%</span>
                 <div className={styles.percentage}>
-                    <div className={styles.fillPercentage} style={{ width: `${percentage}%` }} ></div>
+                    <div className={styles.fillPercentage} style={{ width: `${adjustedPercentage}%` }} ></div>
                 </div>
             </div>
         </div>
