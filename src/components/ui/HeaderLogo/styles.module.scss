@@ -1,0 +1,27 @@
+.link {
+    text-decoration: none;
+    color: var(--fonteDark);
+}
+
+.headerLogo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .logo {
+        height: 80px;
+        width: auto;
+        margin: 2rem;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 600px) {
+    .headerTitle {
+      display: none;
+    }
+  }
+  

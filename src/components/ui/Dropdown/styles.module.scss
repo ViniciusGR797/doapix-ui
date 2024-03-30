@@ -26,11 +26,16 @@
     position: absolute;
     z-index: 1000;
     width: 100%;
-
+    max-height: 20vh;
+    overflow-y: auto;
     background-color: var(--fundoSec);
     border-radius: 1rem;
+    border-width: 1px;
+    border-style: double;
+    border-color: var(--detalhe);
     font-size: 0.8rem;
-    color: #000;
+    font-weight: bold;
+    color: var(--fonteDark);
 }
 
 .dropdownItem {

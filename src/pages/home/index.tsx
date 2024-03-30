@@ -1,31 +1,19 @@
 import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "./styles.module.scss";
-import logo from "../../../public/logo.png";
-import { Input } from "../../components/ui/Input";
-import { FormEvent, useContext, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/Button";
-import { FiUser, FiMail } from "react-icons/fi";
-import children from "../../../public/children.jpg";
-import donation from "../../../public/donation.jpg";
 import Link from "next/link";
-import { AuthContext } from "@/contexts/AuthContext";
 import { toast } from "react-toastify";
-import { validateFields } from "../../utils/validate";
 import Router from 'next/router';
 import { FiLogOut, FiSearch } from "react-icons/fi";
 import { Dropdown } from "@/components/ui/Dropdown";
 import Card from "@/components/ui/Card";
+import HeaderLogo from "@/components/ui/HeaderLogo";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-
-    //   const [name, setName] = useState('');
-    //   const [email, setEmail] = useState('');
-    //   const [pwd, setPwd] = useState('');
-    //   const [repeatPwd, setRepeatPwd] = useState('');
     const [loadingProfile, setLoadingProfile] = useState(false);
     const [loadingCreateDonation, setLoadingCreateDonation] = useState(false);
 
@@ -157,20 +145,17 @@ export default function Home() {
             <div>
                 <div className={styles.header}>
                     <div className={styles.headerMenu}>
-                        {/* Virar componente */}
-                        <div className={styles.headerLogo}>
-                            <Image className={styles.logo} src={logo} alt="doa-pix logo" height={130} />
-                            <h1>Doa Pix</h1>
-                        </div>
+                        <HeaderLogo />
                         <div className={styles.headerButton}>
                             <Button type="button" loading={loadingProfile} onClick={handleButtonProfileClick} >Editar perfil</Button>
                             <button type="button" className={styles.search}>
                                 <FiSearch size={20} />
-                                <input className={styles.inputSearch} value="Pesquisa" />
+                                <input className={styles.inputSearch} placeholder="Pesquisa" />
                             </button>
-                            <Button type="button" loading={loadingProfile} onClick={handleButtonCreateDonationClick} >Pesquisa</Button>
                             <Button type="button" loading={loadingCreateDonation} onClick={handleButtonCreateDonationClick} >Criar doação</Button>
-                            <FiLogOut size={150} />
+                            <Link href="/" className={styles.link} >
+                                <FiLogOut size={50} className={styles.logout} />
+                            </Link>
                         </div>
                     </div>
                     <div className={styles.filter}>

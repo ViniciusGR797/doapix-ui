@@ -13,7 +13,7 @@ const Card: React.FC<CardProps> = ({ urlImage, name, description, percentage }) 
     return (
         <div className={styles.card} >
             <div className={styles.image}>
-                <Image src={urlImage} alt={name} layout="fill" objectFit="cover" style={{ borderRadius: "2rem" }} />
+                <Image src={urlImage} alt={name} width={300} height={300} style={{ borderRadius: "2rem", objectFit: "cover" }} />
             </div>
 
             <div className={styles.cardDetails} >
