@@ -12,17 +12,11 @@ import { Input } from "@/components/Input";
 import { validateFields } from "@/utils/validate";
 import Image from "next/image";
 import { Dropdown } from "@/components/Dropdown";
-import InputDate from "@/components/InputDate";
-
-// import * as React from 'react';
-// import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function CreateDonation() {
+    const optionsState = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'];
     const optionsCategory = ['Casa / Moradia', 'Animais / Pets', 'Arte / Entretenimento', 'Educação / Aprendizagem', 'Empreendedorismo / Empresas', 'Esportes / Atletas', 'Eventos / Comemorações', 'Fome / Desnutrição', 'Projetos Sociais / Voluntariado', 'Saúde / Tratamentos', 'Sonhos / Outros', 'Tragédia / Desastres / Acidentes', 'Viagens / Turismo'];
 
     const [name, setName] = useState('');
@@ -37,6 +31,10 @@ export default function CreateDonation() {
     // const handleDeadline = (date: Date | null) => {
     //     setDeadline(date);
     // };
+
+    const handleOptionStateChange = (option: string) => {
+        setState(option);
+    };
 
     const handleOptionCategoryChange = (option: string) => {
         setCategory(option);
@@ -71,6 +69,8 @@ export default function CreateDonation() {
         console.log(data)
 
         // await CreateDonation(data);
+
+        Router.push('/home')
 
         toast.success("Doação criada")
         setLoadingCreateDonation(false);
@@ -113,17 +113,14 @@ export default function CreateDonation() {
 
                                 {/* <InputDate selectedDate={deadline} onChange={handleDeadline} /> */}
 
-                                {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                    <DemoContainer components={['DatePicker']}>
-                                        <DatePicker label="Basic date picker" />
-                                    </DemoContainer>
-                                </LocalizationProvider> */}
+                                <div className={styles.dropDownCustom}>
+                                    <Dropdown className={styles.styleDropDown} styleDropdownToggle={styles.styleDropdownToggle} styledropdownMenu={styles.styledropdownMenu} options={optionsState} defaultOption={"Estado"} onSelect={handleOptionStateChange} />
+                                </div>
 
-                                <Input className={styles.input} placeholder="Estado" type="text" value={state} onChange={(e) => setState(e.target.value)} />
                             </div>
                             <div className={styles.inputRight}>
-                                <div className={styles.dropDownCategory}>
-                                    <Dropdown className={styles.category} styleDropdownToggle={styles.styleDropdownToggle} styledropdownMenu={styles.styledropdownMenu} options={optionsCategory} defaultOption={"Categória"} onSelect={handleOptionCategoryChange} />
+                                <div className={styles.dropDownCustom}>
+                                    <Dropdown className={styles.styleDropDown} styleDropdownToggle={styles.styleDropdownToggle} styledropdownMenu={styles.styledropdownMenu} options={optionsCategory} defaultOption={"Categória"} onSelect={handleOptionCategoryChange} />
                                 </div>
                                 <textarea className={styles.inputArea} placeholder="Descrição" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
                             </div>
