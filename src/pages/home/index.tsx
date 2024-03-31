@@ -41,18 +41,6 @@ export default function Home() {
         setSearchTerm(event.target.value);
     };
 
-    const handleStateChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setFilterState(event.target.value);
-    };
-
-    const handleTimeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setFilterTime(event.target.value);
-    };
-
-    const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setFilterCategory(event.target.value);
-    };
-
     const handleOptionStateChange = (option: string) => {
         setFilterState(option);
     };

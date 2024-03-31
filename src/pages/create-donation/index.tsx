@@ -11,10 +11,20 @@ import { FiX } from "react-icons/fi";
 import { Input } from "@/components/Input";
 import { validateFields } from "@/utils/validate";
 import Image from "next/image";
+import { Dropdown } from "@/components/Dropdown";
+import InputDate from "@/components/InputDate";
+
+// import * as React from 'react';
+// import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function CreateDonation() {
+    const optionsCategory = ['Casa / Moradia', 'Animais / Pets', 'Arte / Entretenimento', 'Educação / Aprendizagem', 'Empreendedorismo / Empresas', 'Esportes / Atletas', 'Eventos / Comemorações', 'Fome / Desnutrição', 'Projetos Sociais / Voluntariado', 'Saúde / Tratamentos', 'Sonhos / Outros', 'Tragédia / Desastres / Acidentes', 'Viagens / Turismo'];
+
     const [name, setName] = useState('');
     const [goal, setGoal] = useState('');
     const [deadline, setDeadline] = useState('');
@@ -23,6 +33,14 @@ export default function CreateDonation() {
     const [description, setDescription] = useState('');
 
     const [loadingCreateDonation, setLoadingCreateDonation] = useState(false);
+
+    // const handleDeadline = (date: Date | null) => {
+    //     setDeadline(date);
+    // };
+
+    const handleOptionCategoryChange = (option: string) => {
+        setCategory(option);
+    };
 
     async function handleCreateDonation(event: FormEvent) {
         event.preventDefault();
@@ -91,11 +109,23 @@ export default function CreateDonation() {
                                 <Input className={styles.input} placeholder="Nome" type="text" value={name} onChange={(e) => setName(e.target.value)} />
                                 <Input className={styles.input} placeholder="Meta" type="text" value={goal} onChange={(e) => setGoal(e.target.value)} />
                                 <Input className={styles.input} placeholder="Data Limite" type="text" value={deadline} onChange={(e) => setDeadline(e.target.value)} />
+
+
+                                {/* <InputDate selectedDate={deadline} onChange={handleDeadline} /> */}
+
+                                {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                    <DemoContainer components={['DatePicker']}>
+                                        <DatePicker label="Basic date picker" />
+                                    </DemoContainer>
+                                </LocalizationProvider> */}
+
                                 <Input className={styles.input} placeholder="Estado" type="text" value={state} onChange={(e) => setState(e.target.value)} />
                             </div>
                             <div className={styles.inputRight}>
-                                <Input className={styles.input} placeholder="Categória" type="text" value={category} onChange={(e) => setCategory(e.target.value)} />
-                                <Input className={styles.inputArea} placeholder="Descrição" type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
+                                <div className={styles.dropDownCategory}>
+                                    <Dropdown className={styles.category} styleDropdownToggle={styles.styleDropdownToggle} styledropdownMenu={styles.styledropdownMenu} options={optionsCategory} defaultOption={"Categória"} onSelect={handleOptionCategoryChange} />
+                                </div>
+                                <textarea className={styles.inputArea} placeholder="Descrição" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
                             </div>
                         </div>
                         <div className={styles.footer}>

@@ -83,38 +83,67 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     height: 100%;
     width: 25%;
 }
 
 .input {
-    border-color: var(--fonteDark);
-    max-width: 500px;
-    margin: 0rem;
-    width: 100%;
+    border-color: var(--fonteDark) !important;
+    max-width: 500px !important;
+    margin: 0rem !important;
+    width: 100% !important;
 }
 
 .input::placeholder {
-    color: var(--fonteDark);
+    color: var(--fonteDark) !important;
 }
 
 .inputRight {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     height: 100%;
     width: 25%;
 }
 
-.inputArea {
-    border-color: var(--fonteDark);
-    border-radius: 1rem;
-    max-width: 500px;
-    height: 75%;
-    margin: 0rem;
+.dropDownCategory {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 100%;
+}
+
+.category {
+    width: 100% !important;
+}
+
+.styleDropdownToggle {
+    width: 100% !important;
+    max-width: 500px !important;
+    color: var(--fonteDark) !important;
+    border-color: var(--fonteDark) !important;
+    height: 50px !important;
+    align-items: center !important;
+    font-size: 1rem !important;
+    justify-content: space-between !important;
+}
+
+.styledropdownMenu {
+    position: absolute !important;
+}
+
+.inputArea {
+    background-color: transparent;
+    width: 100%;
+    height: 72%;
+    border-radius: 1rem;
+    border-style: double;
+    border-color: var(--fonteDark);
+    max-width: 500px;
+    padding: 1rem 1.5rem 1rem 1.5rem;
 }
 
 .inputArea::placeholder {
@@ -178,14 +207,14 @@
     }
 
     .input {
-        border-color: var(--fundoSec);
-        max-width: 500px;
-        margin: 0rem;
-        width: 75%;
+        border-color: var(--fundoSec) !important;
+        max-width: 500px !important;
+        margin: 0rem !important;
+        width: 75% !important;
     }
 
     .input::placeholder {
-        color: var(--fonte);
+        color: var(--fonte) !important;
     }
 
     .inputRight {
@@ -193,11 +222,19 @@
         gap: 2rem;
     }
 
+    .dropDownCategory {
+        width: 75%;
+    }
+
+    .styleDropdownToggle {
+        color: var(--fonte) !important;
+        border-color: var(--fundoSec) !important;
+    }
+
     .inputArea {
         border-color: var(--fundoSec);
         margin: 0rem;
         width: 75%;
-        height: 75%;
     }
 
     .inputArea::placeholder {
