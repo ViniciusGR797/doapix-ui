@@ -14,7 +14,7 @@
     width: 90%;
     height: 100%;
     background-color: var(--fundoSec);
-    border-radius: 2rem;
+    border-radius: 1rem 1rem 2rem 2rem;
 }
 
 .body {
@@ -28,7 +28,7 @@
 }
 
 .image {
-    border-radius: 2rem 2rem 2rem 2rem;
+    border-radius: 1rem;
     position: relative;
     width: 25vw;
     height: 20vw;
@@ -108,7 +108,7 @@
 .comments {
     width: 40%;
     border-width: 1px;
-    border-radius: 2rem;
+    border-radius: 1rem;
     border-style: solid;
     border-color: var(--fonteDark);
     background-color: transparent;
@@ -192,7 +192,7 @@
     }
 
     .image {
-        border-radius: 2rem 2rem 2rem 0rem;
+        border-radius: 1rem;
         width: 30vw;
         height: 30vw;
         max-width: 250px;
@@ -256,7 +256,7 @@
     .comments {
         width: 90%;
         border-width: 1px;
-        border-radius: 2rem;
+        border-radius: 1rem;
         border-style: solid;
         border-color: var(--fonteDark);
         background-color: transparent;
@@ -319,18 +319,13 @@
 }
 
 @media (max-width: 350px) or (max-height: 650px) {
-    .description {
-        p {
-            font-size: 0.8rem;
-        }
-    }
-
     .nameText {
         font-size: 1rem;
     }
 
     .description {
         p {
+            font-size: 0.8rem;
             max-height: calc(76vh - 140px);
         }
     }

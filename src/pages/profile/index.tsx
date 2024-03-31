@@ -72,7 +72,7 @@ export default function Profile() {
                     <div className={styles.square}>
                         <div className={styles.headerBody}>
                             <h2 className={styles.title} >Editar Perfil</h2>
-                            <div className={styles.verticalLine}></div>
+                            <div className={styles.horizontalLine}></div>
                         </div>
                         <Link href="/home" className={styles.link} >
                             <FiX size={50} className={styles.exit} />
@@ -91,7 +91,7 @@ export default function Profile() {
                         </div>
                         <div className={styles.footer}>
                             <div className={styles.button}>
-                                <Button type="button" loading={loadingUpdateUser} style={{ width: '100%' }} onClick={handleUpdateProfile} >Doar</Button>
+                                <Button type="button" loading={loadingUpdateUser} style={{ width: '100%' }} onClick={handleUpdateProfile} >Salvar</Button>
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,248 @@
+.mainDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 85vh;
+}
+
+.square {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1vh;
+    width: 90%;
+    height: 100%;
+    background-color: var(--fundoSec);
+    border-radius: 1rem;
+    position: relative;
+}
+
+.headerBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.title {
+    margin: 2rem;
+}
+
+.horizontalLine {
+    border-top: 0.8px solid var(--fonteDark);
+    width: 90%;
+    margin-bottom: 1rem;
+}
+
+.link {
+    text-decoration: none;
+    color: var(--fonteDark);
+}
+
+.exit {
+    width: 40px;
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+}
+
+.body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    height: 80%;
+    margin: 2rem 0 2rem 0;
+}
+
+.uploadImage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.image {
+    border-radius: 1rem;
+    position: relative;
+    width: 25vw;
+    height: 20vw;
+    max-width: 500px;
+    max-height: 500px;
+    display: flex;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.inputCenter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 25%;
+}
+
+.input {
+    border-color: var(--fonteDark);
+    max-width: 500px;
+    margin: 0rem;
+    width: 100%;
+}
+
+.input::placeholder {
+    color: var(--fonteDark);
+}
+
+.inputRight {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 25%;
+}
+
+.inputArea {
+    border-color: var(--fonteDark);
+    border-radius: 1rem;
+    max-width: 500px;
+    height: 75%;
+    margin: 0rem;
+    width: 100%;
+}
+
+.inputArea::placeholder {
+    color: var(--fonteDark);
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+}
+
+.button {
+    width: 37.5%;
+    margin: 2rem;
+    max-width: 500px;
+}
+
+@media (max-width: 740px) {
+    .header {
+        display: none;
+    }
+
+    .mainDiv {
+        width: 100%;
+        height: 97vh;
+    }
+
+    .square {
+        width: 100%;
+        height: 100vh;
+        background-color: var(--fundo);
+    }
+
+    .horizontalLine {
+        border-top: 0.8px solid var(--fundoSec);
+    }
+
+    .body {
+        flex-direction: column;
+        justify-content: space-around;
+        margin: 0;
+        gap: 2rem;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .uploadImage {
+        width: 100%;
+    }
+
+    .image {
+        width: 40vw;
+        height: 30vw;
+    }
+
+    .inputCenter {
+        width: 100%;
+        gap: 2rem;
+    }
+
+    .input {
+        border-color: var(--fundoSec);
+        max-width: 500px;
+        margin: 0rem;
+        width: 75%;
+    }
+
+    .input::placeholder {
+        color: var(--fonte);
+    }
+
+    .inputRight {
+        width: 100%;
+        gap: 2rem;
+    }
+
+    .inputArea {
+        border-color: var(--fundoSec);
+        margin: 0rem;
+        width: 75%;
+        height: 75%;
+    }
+
+    .inputArea::placeholder {
+        color: var(--fonte);
+    }
+
+    .footer {
+        justify-content: center;
+        margin: 1rem 0 1rem 0;
+    }
+
+    .button {
+        width: 75%;
+        margin: 0rem;
+        max-width: 500px;
+    }
+}
+
+@media (min-width: 740px) and (max-height: 900px) {
+    .mainDiv {
+        height: 75vh;
+    }
+
+    .title {
+        margin: 1.5rem;
+    }
+
+    .body {
+        height: 60%;
+        margin: 0;
+    }
+
+    .button {
+        margin: 1rem;
+    }
+}
+
+@media (max-width: 350px) or (max-height: 650px) {
+    .title {
+        font-size: 1.2rem;
+        margin: 2rem 0 2rem 0;
+    }
+
+    .exit {
+        width: 30px;
+        right: 1rem;
+    }
+}

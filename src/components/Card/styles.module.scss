@@ -1,13 +1,13 @@
 .card {
     display: flex;
     flex-direction: row;
-    border-radius: 2rem;
+    border-radius: 1rem;
     background-color: var(--fundoSec);
     width: 550px;
 }
 
 .image {
-    border-radius: 2rem;
+    border-radius: 1rem;
     position: relative;
     width: 200px;
     height: 195px;

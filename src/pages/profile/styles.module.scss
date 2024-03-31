@@ -14,7 +14,7 @@
     width: 90%;
     height: 100%;
     background-color: var(--fundoSec);
-    border-radius: 2rem;
+    border-radius: 1rem;
     position: relative;
 }
 
@@ -29,9 +29,9 @@
     margin: 2rem;
 }
 
-.verticalLine {
+.horizontalLine {
     border-top: 0.8px solid var(--fonteDark);
-    width: 80%;
+    width: 90%;
     margin-bottom: 1rem;
 }
 
@@ -93,7 +93,6 @@
     flex-direction: row;
     align-items: center;
     justify-content: right;
-
 }
 
 .button {
@@ -118,7 +117,7 @@
         background-color: var(--fundo);
     }
 
-    .verticalLine {
+    .horizontalLine {
         border-top: 0.8px solid var(--fundoSec);
     }
 
@@ -160,7 +159,7 @@
 
     .button {
         width: 75%;
-        margin: 2rem;
+        margin: 2rem 0 2rem 0;
         max-width: 500px;
     }
 }
@@ -188,5 +187,17 @@
 
     .button {
         margin: 1rem;
+    }
+}
+
+@media (max-width: 350px) or (max-height: 650px) {
+    .title {
+        font-size: 1.2rem;
+        margin: 2rem 0 2rem 0;
+    }
+
+    .exit {
+        width: 30px;
+        right: 1rem;
     }
 }
