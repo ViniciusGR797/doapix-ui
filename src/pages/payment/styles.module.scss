@@ -1,0 +1,148 @@
+.mainDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 85vh;
+}
+
+.square {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    // gap: 1vh;
+    width: 90%;
+    height: 100%;
+    background-color: transparent;
+    border-width: 1px;
+    border-radius: 1rem;
+    border-style: double;
+    border-color: var(--fundoSec);
+}
+
+.title {
+    margin: 2rem;
+    text-align: center;
+}
+
+.link {
+    text-decoration: none;
+    color: var(--fonteDark);
+}
+
+.exit {
+    width: 40px;
+    position: absolute;
+    top: 0.5rem;
+    right: 1.5rem;
+}
+
+.uploadImage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.image {
+    border-radius: 1rem;
+    position: relative;
+    width: 20vw;
+    height: 20vw;
+    max-width: 500px;
+    max-height: 500px;
+    display: flex;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.message {
+    padding: 1rem;
+    text-align: center;
+}
+
+.buttonCopy {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 75%;
+    max-width: 500px;
+    height: 50px;
+    background-color: var(--detalhe);
+    padding: 0.4rem;
+    color: var(--clara);
+    border-radius: 2rem;
+    transition: filter 0.2s;
+    margin-bottom: 2rem;
+}
+
+.copy {
+    height: 30px;
+}
+
+@media (max-width: 740px) {
+    .header {
+        display: none;
+    }
+
+    .mainDiv {
+        width: 100%;
+        height: 100%;
+    }
+
+    .square {
+        width: 100%;
+        height: 100vh;
+        border-style: none;
+    }
+
+    .image {
+        width: 60vw;
+        height: 60vw;
+    }
+}
+
+@media (min-width: 740px) and (min-height: 650px) and (max-height: 900px) {
+    .mainDiv {
+        height: 75vh;
+    }
+
+    .title {
+        margin: 1.5rem;
+    }
+
+    .image {
+        width: 25vh;
+        height: 25vh;
+    }
+}
+
+@media (max-width: 350px) or (max-height: 650px) {
+    .mainDiv {
+        height: 75vh;
+    }
+
+    .title {
+        font-size: 1.2rem;
+        margin: 3rem 2rem 2rem 2rem;
+        // margin: 0;
+    }
+
+    .image {
+        width: 25vh;
+        height: 25vh;
+    }
+
+    .exit {
+        width: 30px;
+        right: 1rem;
+    }
+}
