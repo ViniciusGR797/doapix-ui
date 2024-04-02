@@ -51,9 +51,14 @@
   width: 100px;
 }
 
-.link {
-  text-decoration: none;
-  color: var(--fonteDark);
+.buttonLeave {
+  background-color: transparent;
+  border: 0;
+  transition: transform 0.7s;
+
+  &:hover{
+      transform: scale(1.2);
+  }
 }
 
 .filter {
@@ -71,6 +76,7 @@
   justify-content: center;
   gap: 2rem;
   margin-top: 3rem;
+  cursor: pointer;
 }
 
 @media (max-width: 600px) {

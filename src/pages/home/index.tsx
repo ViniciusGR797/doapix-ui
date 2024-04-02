@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
 import styles from "./styles.module.scss";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button } from "@/components/Button";
 import Link from "next/link";
 import Router from 'next/router';
@@ -9,12 +9,15 @@ import { FiLogOut, FiSearch } from "react-icons/fi";
 import { Dropdown } from "@/components/Dropdown";
 import Card from "@/components/Card";
 import HeaderLogo from "@/components/HeaderLogo";
+import { AuthContext, signOut } from "@/contexts/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
     const [loadingProfile, setLoadingProfile] = useState(false);
     const [loadingCreateDonation, setLoadingCreateDonation] = useState(false);
+
+    const { signOut } = useContext(AuthContext)
 
     const handleButtonProfileClick = () => {
         setLoadingProfile(true);
@@ -109,9 +112,9 @@ export default function Home() {
                                 <input className={styles.inputSearch} placeholder="Pesquisa" value={searchTerm} onChange={handleSearchChange} />
                             </button>
                             <Button type="button" loading={loadingCreateDonation} onClick={handleButtonCreateDonationClick} >Criar doação</Button>
-                            <Link href="/" className={styles.link} >
-                                <FiLogOut size={50} className={styles.logout} />
-                            </Link>
+                            <button onClick={signOut} className={styles.buttonLeave}>
+                                <FiLogOut color='#000' size={40} />
+                            </button>
                         </div>
                     </div>
                     <div className={styles.filter}>
