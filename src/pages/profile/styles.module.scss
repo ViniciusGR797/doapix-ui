@@ -13,7 +13,12 @@
     gap: 1vh;
     width: 90%;
     height: 100%;
-    background-color: var(--fundoSec);
+    border-radius: 1rem;
+    border-width: 1px;
+    border-radius: 2rem;
+    border-style: double;
+    border-color: var(--fonteDark);
+    background-color: transparent;
     border-radius: 1rem;
     position: relative;
 }

@@ -2,12 +2,16 @@
     display: flex;
     flex-direction: row;
     border-radius: 1rem;
-    background-color: var(--fundoSec);
+    border-width: 1px;
+    border-radius: 2rem;
+    border-style: double;
+    border-color: var(--fonteDark);
+    background-color: transparent;
     width: 550px;
 }
 
 .image {
-    border-radius: 1rem;
+    border-radius: 2rem;
     position: relative;
     width: 200px;
     height: 195px;
