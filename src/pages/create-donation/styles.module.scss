@@ -94,14 +94,10 @@
 }
 
 .input {
-    border-color: var(--fonteDark) !important;
+    border-color: var(--fundoSec) !important;
     max-width: 500px !important;
     margin: 0rem !important;
     width: 100% !important;
-}
-
-.input::placeholder {
-    color: var(--fonteDark) !important;
 }
 
 .inputRight {
@@ -128,8 +124,8 @@
 .styleDropdownToggle {
     width: 100% !important;
     max-width: 500px !important;
-    color: var(--fonteDark) !important;
-    border-color: var(--fonteDark) !important;
+    color: var(--fonte) !important;
+    border-color: var(--fundoSec) !important;
     height: 50px !important;
     align-items: center !important;
     font-size: 1rem !important;
@@ -146,13 +142,13 @@
     height: 72%;
     border-radius: 1rem;
     border-style: double;
-    border-color: var(--fonteDark);
+    border-color: var(--fundoSec);
     max-width: 500px;
     padding: 1rem 1.5rem 1rem 1.5rem;
 }
 
 .inputArea::placeholder {
-    color: var(--fonteDark);
+    color: var(--fonte);
 }
 
 .footer {
@@ -217,10 +213,6 @@
         max-width: 500px !important;
         margin: 0rem !important;
         width: 75% !important;
-    }
-
-    .input::placeholder {
-        color: var(--fonte) !important;
     }
 
     .inputRight {

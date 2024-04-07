@@ -17,7 +17,6 @@ import { useOptions } from "@/contexts/OptionsContext";
 import { InputMonetary } from "@/components/InputMonetary";
 import default_image from "../../../public/upload.png";
 import DonationService from '../../services/donationService';
-import sharp from 'sharp';
 import imageCompression from 'browser-image-compression';
 
 export default function CreateDonation() {
@@ -133,10 +132,6 @@ export default function CreateDonation() {
 
         setLoadingCreateDonation(false);
     }
-
-
-
-
 
     return (
         <>

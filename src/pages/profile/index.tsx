@@ -11,17 +11,40 @@ import { FiX } from "react-icons/fi";
 import { Input } from "@/components/Input";
 import { validateFields } from "@/utils/validate";
 import { useAuth } from "@/contexts/AuthContext";
+import { Dropdown } from "@/components/Dropdown";
+import { useOptions } from "@/contexts/OptionsContext";
+import { InputPixKey } from "@/components/InputPixKey";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Profile() {
+    const { optionsPixKey } = useOptions();
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [pix_key, setPixKey] = useState('');
+    const [optionPixKey, setOptionPixKey] = useState('');
     const [pwd, setPwd] = useState('');
     const [repeatPwd, setRepeatPwd] = useState('');
 
     const [loadingUpdateUser, setLoadingUpdateUser] = useState(false);
+
+    const handleoptionsPixKeyChange = (option: string) => {
+        setOptionPixKey(option);
+    };
+
+    const getFormat = (option: string) => {
+        switch (option) {
+            case 'CPF':
+                return '###.###.###-##';
+            case 'CNPJ':
+                return '##.###.###/####-##';
+            case 'Telefone':
+                return '(##) # ####-####';
+            default:
+                return '';
+        }
+    }
 
     async function handleUpdateProfile(event: FormEvent) {
         event.preventDefault();
@@ -82,7 +105,11 @@ export default function Profile() {
                             <div className={styles.updateInfo}>
                                 <Input className={styles.input} placeholder="Nome" type="text" value={name} onChange={(e) => setName(e.target.value)} />
                                 <Input className={styles.input} placeholder="Email" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-                                <Input className={styles.input} placeholder="Chave Pix" type="text" value={pix_key} onChange={(e) => setPixKey(e.target.value)} />
+
+                                <div className={styles.pixKey}>
+                                    <InputPixKey className={styles.input} placeholder="Chave Pix" format={getFormat(optionPixKey)} type="text" value={pix_key} onChange={(e) => setPixKey(e.target.value)} />
+                                    <Dropdown styleDropdownToggle={styles.styleDropdownToggle} styledropdownMenu={styles.styledropdownMenu} options={optionsPixKey} defaultOption={"Tipo"} onSelect={handleoptionsPixKeyChange} />
+                                </div>
                             </div>
                             <div className={styles.line}></div>
                             <div className={styles.updatePwd}>
