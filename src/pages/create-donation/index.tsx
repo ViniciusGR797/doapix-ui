@@ -17,6 +17,8 @@ import { useOptions } from "@/contexts/OptionsContext";
 import { InputMonetary } from "@/components/InputMonetary";
 import default_image from "../../../public/upload.png";
 import DonationService from '../../services/donationService';
+import sharp from 'sharp';
+import imageCompression from 'browser-image-compression';
 
 export default function CreateDonation() {
     const { optionsState, optionsCategory } = useOptions();
@@ -31,18 +33,36 @@ export default function CreateDonation() {
 
     const [loadingCreateDonation, setLoadingCreateDonation] = useState(false);
 
-    const handleImageUpload = (event: any) => {
-        const file = event.target.files[0];
-        const reader = new FileReader();
+    const MAX_BASE64_SIZE = 70000;
 
-        reader.onloadend = () => {
-            if (typeof reader.result === 'string') {
-                setUrlImgage(reader.result);
-            }
+    const handleImageUpload = async (event: any) => {
+        let file = event.target.files[0];
+        let options = {
+            maxSizeMB: 10,
+            useWebWorker: true,
         };
 
-        reader.readAsDataURL(file);
+        try {
+            let compressedFile = await imageCompression(file, options);
+            let reader = new FileReader();
+
+            reader.onloadend = async () => {
+                if (typeof reader.result === 'string') {
+                    while (btoa(reader.result).length > MAX_BASE64_SIZE) {
+                        options.maxSizeMB /= 1.2; 
+                        compressedFile = await imageCompression(compressedFile, options);
+                        reader.readAsDataURL(compressedFile);
+                    }
+                    setUrlImgage(reader.result);
+                }
+            };
+
+            reader.readAsDataURL(compressedFile);
+        } catch (error) {
+            console.log(error);
+        }
     };
+
 
     useEffect(() => {
         if (name.length > 255) {
@@ -92,7 +112,7 @@ export default function CreateDonation() {
         }
 
         setLoadingCreateDonation(true);
-
+        
         const response = await DonationService.createDonation(
             name,
             goal.replace(/R\$ /g, '').replace(/ /g, '').replace(',', '.'),
@@ -114,9 +134,9 @@ export default function CreateDonation() {
         setLoadingCreateDonation(false);
     }
 
-    
 
-    
+
+
 
     return (
         <>
