@@ -14,6 +14,7 @@ import Image from "next/image";
 import { Dropdown } from "@/components/Dropdown";
 import { useAuth } from "@/contexts/AuthContext";
 import { useOptions } from "@/contexts/OptionsContext";
+import { InputMonetary } from "@/components/InputMonetary";
 
 export default function CreateDonation() {
     const { optionsState, optionsCategory } = useOptions();
@@ -26,6 +27,27 @@ export default function CreateDonation() {
     const [description, setDescription] = useState('');
 
     const [loadingCreateDonation, setLoadingCreateDonation] = useState(false);
+
+    useEffect(() => {
+        if (name.length > 255) {
+            toast.warning("Atingiu o limite de caracteres para a nome")
+            setName(name.substring(0, 255));
+        }
+    }, [name]);
+
+    useEffect(() => {
+        const numericValue = parseFloat(goal.replace(/R\$ /g, '').replace(/ /g, '').replace(',', '.'));
+        if (numericValue > 999999999999.99) {
+            setGoal('R$  999 999 999 999,99');
+        }
+    }, [goal]);
+
+    useEffect(() => {
+        if (description.length > 2000) {
+            toast.warning("Atingiu o limite de caracteres para a descrição")
+            setDescription(description.substring(0, 2000));
+        }
+    }, [description]);
 
     // const handleDeadline = (date: Date | null) => {
     //     setDeadline(date);
@@ -114,12 +136,14 @@ export default function CreateDonation() {
                             </div>
                             <div className={styles.inputCenter}>
                                 <Input className={styles.input} placeholder="Nome" type="text" value={name} onChange={(e) => setName(e.target.value)} />
-                                <Input className={styles.input} placeholder="Meta" type="text" value={goal} onChange={(e) => setGoal(e.target.value)} />
+                                <InputMonetary className={styles.input} placeholder="Meta" value={goal} onChange={(e) => setGoal(e.target.value)} />
+
                                 <Input className={styles.input} placeholder="Data Limite" type="text" value={deadline} onChange={(e) => setDeadline(e.target.value)} />
 
+                                <Input className={styles.input} placeholder="Data Limite" type="date" value={deadline} onChange={(e) => setDeadline(e.target.value)} />
 
-                                {/* <InputDate selectedDate={deadline} onChange={handleDeadline} /> */}
                                 
+
                                 <div className={styles.dropDownCustom}>
                                     <Dropdown className={styles.styleDropDown} styleDropdownToggle={styles.styleDropdownToggle} styledropdownMenu={styles.styledropdownMenu} options={optionsState.slice(1)} defaultOption={"Estado"} onSelect={handleOptionStateChange} />
                                 </div>
