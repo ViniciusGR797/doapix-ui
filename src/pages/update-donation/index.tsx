@@ -12,13 +12,13 @@ import { Input } from "@/components/Input";
 import { validateFields } from "@/utils/validate";
 import Image from "next/image";
 import { Dropdown } from "@/components/Dropdown";
+import { useOptions } from "@/contexts/OptionsContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function CreateDonation() {
-    const optionsState = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'];
-    const optionsCategory = ['Casa / Moradia', 'Animais / Pets', 'Arte / Entretenimento', 'Educação / Aprendizagem', 'Empreendedorismo / Empresas', 'Esportes / Atletas', 'Eventos / Comemorações', 'Fome / Desnutrição', 'Projetos Sociais / Voluntariado', 'Saúde / Tratamentos', 'Sonhos / Outros', 'Tragédia / Desastres / Acidentes', 'Viagens / Turismo'];
-
+    const { optionsState, optionsCategory } = useOptions();
+    
     const [name, setName] = useState('');
     const [goal, setGoal] = useState('');
     const [deadline, setDeadline] = useState('');
@@ -114,13 +114,13 @@ export default function CreateDonation() {
                                 {/* <InputDate selectedDate={deadline} onChange={handleDeadline} /> */}
 
                                 <div className={styles.dropDownCustom}>
-                                    <Dropdown className={styles.styleDropDown} styleDropdownToggle={styles.styleDropdownToggle} styledropdownMenu={styles.styledropdownMenu} options={optionsState} defaultOption={"Estado"} onSelect={handleOptionStateChange} />
+                                    <Dropdown className={styles.styleDropDown} styleDropdownToggle={styles.styleDropdownToggle} styledropdownMenu={styles.styledropdownMenu} options={optionsState.slice(1)} defaultOption={"Estado"} onSelect={handleOptionStateChange} />
                                 </div>
 
                             </div>
                             <div className={styles.inputRight}>
                                 <div className={styles.dropDownCustom}>
-                                    <Dropdown className={styles.styleDropDown} styleDropdownToggle={styles.styleDropdownToggle} styledropdownMenu={styles.styledropdownMenu} options={optionsCategory} defaultOption={"Categória"} onSelect={handleOptionCategoryChange} />
+                                    <Dropdown className={styles.styleDropDown} styleDropdownToggle={styles.styleDropdownToggle} styledropdownMenu={styles.styledropdownMenu} options={optionsCategory.slice(1)} defaultOption={"Categória"} onSelect={handleOptionCategoryChange} />
                                 </div>
                                 <textarea className={styles.inputArea} placeholder="Descrição" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
                             </div>

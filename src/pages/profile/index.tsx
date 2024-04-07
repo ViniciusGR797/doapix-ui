@@ -3,13 +3,14 @@ import Head from "next/head";
 import { Inter } from "next/font/google";
 import HeaderLogo from "@/components/HeaderLogo";
 import { Button } from "@/components/Button";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import Router from 'next/router';
 import { toast } from "react-toastify";
 import Link from "next/link";
 import { FiX } from "react-icons/fi";
 import { Input } from "@/components/Input";
 import { validateFields } from "@/utils/validate";
+import { useAuth } from "@/contexts/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
 

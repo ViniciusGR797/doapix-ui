@@ -3,8 +3,8 @@ import Head from "next/head";
 import { Inter } from "next/font/google";
 import HeaderLogo from "@/components/HeaderLogo";
 import { Button } from "@/components/Button";
-import { FormEvent, useState } from "react";
-import Router from 'next/router';
+import { FormEvent, useEffect, useState } from "react";
+import Router, { useRouter } from 'next/router';
 import { toast } from "react-toastify";
 import Link from "next/link";
 import { FiX } from "react-icons/fi";
@@ -12,12 +12,11 @@ import { Input } from "@/components/Input";
 import { validateFields } from "@/utils/validate";
 import Image from "next/image";
 import { Dropdown } from "@/components/Dropdown";
-
-const inter = Inter({ subsets: ["latin"] });
+import { useAuth } from "@/contexts/AuthContext";
+import { useOptions } from "@/contexts/OptionsContext";
 
 export default function CreateDonation() {
-    const optionsState = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'];
-    const optionsCategory = ['Casa / Moradia', 'Animais / Pets', 'Arte / Entretenimento', 'Educação / Aprendizagem', 'Empreendedorismo / Empresas', 'Esportes / Atletas', 'Eventos / Comemorações', 'Fome / Desnutrição', 'Projetos Sociais / Voluntariado', 'Saúde / Tratamentos', 'Sonhos / Outros', 'Tragédia / Desastres / Acidentes', 'Viagens / Turismo'];
+    const { optionsState, optionsCategory } = useOptions();
 
     const [name, setName] = useState('');
     const [goal, setGoal] = useState('');
@@ -68,7 +67,15 @@ export default function CreateDonation() {
 
         console.log(data)
 
-        // await CreateDonation(data);
+        // const response = await UserService.createUser(name, email, pwd)
+        // if (!response) {
+        //     toast.error("Erro ao consumir API")
+        // } else if (response.status === 201) {
+        //     toast.success("Usuário criado com sucesso");
+        //     Router.push('/')
+        // } else {
+        //     toast.error(response.data.msg)
+        // }
 
         Router.push('/home')
 
@@ -112,15 +119,15 @@ export default function CreateDonation() {
 
 
                                 {/* <InputDate selectedDate={deadline} onChange={handleDeadline} /> */}
-
+                                
                                 <div className={styles.dropDownCustom}>
-                                    <Dropdown className={styles.styleDropDown} styleDropdownToggle={styles.styleDropdownToggle} styledropdownMenu={styles.styledropdownMenu} options={optionsState} defaultOption={"Estado"} onSelect={handleOptionStateChange} />
+                                    <Dropdown className={styles.styleDropDown} styleDropdownToggle={styles.styleDropdownToggle} styledropdownMenu={styles.styledropdownMenu} options={optionsState.slice(1)} defaultOption={"Estado"} onSelect={handleOptionStateChange} />
                                 </div>
 
                             </div>
                             <div className={styles.inputRight}>
                                 <div className={styles.dropDownCustom}>
-                                    <Dropdown className={styles.styleDropDown} styleDropdownToggle={styles.styleDropdownToggle} styledropdownMenu={styles.styledropdownMenu} options={optionsCategory} defaultOption={"Categória"} onSelect={handleOptionCategoryChange} />
+                                    <Dropdown className={styles.styleDropDown} styleDropdownToggle={styles.styleDropdownToggle} styledropdownMenu={styles.styledropdownMenu} options={optionsCategory.slice(1)} defaultOption={"Categória"} onSelect={handleOptionCategoryChange} />
                                 </div>
                                 <textarea className={styles.inputArea} placeholder="Descrição" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
                             </div>

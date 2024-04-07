@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 import styles from "../styles/Home.module.scss";
 import logo from "../../public/logo.png";
 import { Input } from "../components/Input";
-import { FormEvent, useContext, useState } from "react";
+import { FormEvent, useContext, useEffect, useState } from "react";
 import { Button } from "@/components/Button";
 import { FiUser, FiMail } from "react-icons/fi";
 import children from "../../public/children.jpg";
@@ -12,16 +12,19 @@ import donation from "../../public/donation.jpg";
 import Link from "next/link";
 import { validateFields } from "@/utils/validate";
 import { toast } from "react-toastify";
-import { AuthContext } from "@/contexts/AuthContext";
+import UserService from '../services/userService';
+import { useAuth } from "@/contexts/AuthContext";
+import Router from 'next/router';
+import { useToastFromCookie } from "@/contexts/HookToast";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const { signIn } = useContext(AuthContext);
-
   const [email, setEmail] = useState('');
   const [pwd, setPwd] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const { login } = useAuth();
 
   async function handleSignIn(event: FormEvent) {
     event.preventDefault();
@@ -38,15 +41,21 @@ export default function Home() {
 
     setLoading(true);
 
-    let data = {
-      email,
-      pwd
+    const response = await UserService.loginUser(email, pwd)
+    if (!response) {
+      toast.error("Erro ao consumir API")
+    } else if (response.status === 200) {
+      login(response.data.id, email, response.data.access_token)
+      toast.success("Logado com sucesso");
+      Router.push('/home')
+    } else {
+      toast.error(response.data.msg)
     }
-
-    await signIn(data);
 
     setLoading(false);
   }
+
+  useToastFromCookie(null, 'loginToast');
 
   return (
     <>
