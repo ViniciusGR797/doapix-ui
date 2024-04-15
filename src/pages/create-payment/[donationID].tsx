@@ -38,7 +38,7 @@ export default function CreateDonation() {
     const [alias, setAlias] = useState('');
     const [email, setEmail] = useState('');
     const [amount, setAmount] = useState('');
-    const [message, setmessage] = useState('');
+    const [message, setMessage] = useState('');
 
     const [loadingCreateTransaction, setLoadingCreateTransaction] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -71,7 +71,7 @@ export default function CreateDonation() {
     useEffect(() => {
         if (message.length > 2000) {
             toast.warning("Atingiu o limite de caracteres para a mensagem")
-            setmessage(message.substring(0, 2000));
+            setMessage(message.substring(0, 2000));
         }
     }, [message]);
 
@@ -181,7 +181,7 @@ export default function CreateDonation() {
                                     <InputMonetary className={styles.input} placeholder="Valor" value={amount} onChange={(e) => setAmount(e.target.value)} />
                                 </div>
                                 <div className={styles.inputRight}>
-                                    <textarea className={styles.inputArea} placeholder="Mensagem (opcional)" value={message} onChange={(e) => setmessage(e.target.value)}></textarea>
+                                    <textarea className={styles.inputArea} placeholder="Mensagem (opcional)" value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
                                 </div>
                             </div>
                             <div className={styles.footer}>

@@ -22,7 +22,9 @@ export function InputPixKey({ className, placeholder, value, format, onChange, .
         className={styles.input}
         placeholder={placeholder}
         format={format}
+        value={value}
         allowEmptyFormatting mask="_"
+        onChange={onChange}
       />
       : <Input className={styles.inputNoFormat} placeholder={placeholder} type="text" value={value} onChange={onChange} />
   )

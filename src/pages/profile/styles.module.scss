@@ -6,6 +6,33 @@
     height: 85vh;
 }
 
+.spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    svg {
+        color: var(--detalhe);
+        font-size: 48px; // Tamanho do spinner
+        animation: animate 2s infinite linear;
+    }
+
+    &:hover {
+        filter: brightness(1.10);
+    }
+}
+
+@keyframes animate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .square {
     display: flex;
     flex-direction: column;
