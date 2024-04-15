@@ -23,6 +23,14 @@
     height: 30px;
 }
 
+.dropdownToggleText {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 78%;
+}
+
+
 .dropdownMenu {
     position: absolute;
     z-index: 1000;

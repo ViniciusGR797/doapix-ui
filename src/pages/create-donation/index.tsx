@@ -62,7 +62,6 @@ export default function CreateDonation() {
         }
     };
 
-
     useEffect(() => {
         if (name.length > 255) {
             toast.warning("Atingiu o limite de caracteres para a nome")
@@ -124,7 +123,7 @@ export default function CreateDonation() {
         if (!response) {
             toast.error("Erro ao consumir API")
         } else if (response.status === 201) {
-            toast.success("Doação criada com sucesso");
+            toast.success("Campanha solidária criada com sucesso");
             Router.push('/home')
         } else {
             toast.error(response.data.msg)
@@ -165,33 +164,13 @@ export default function CreateDonation() {
                                 <input id="fileInput" type="file" accept="image/*" onChange={handleImageUpload} style={{ display: 'none' }} />
                             </div>
 
-
                             <div className={styles.inputCenter}>
                                 <Input className={styles.input} placeholder="Nome" type="text" value={name} onChange={(e) => setName(e.target.value)} />
                                 <InputMonetary className={styles.input} placeholder="Meta" value={goal} onChange={(e) => setGoal(e.target.value)} />
                                 <Input className={styles.input} placeholder="Data Limite" type="date" min={today} value={deadline} onChange={(e) => setDeadline(e.target.value)} />
-
-
-
-                                {/* <label htmlFor="fileInput">
-                                    <img src={image || 'URL da sua imagem aqui'} alt="Clique para selecionar uma nova imagem" />
-                                </label>
-                                <input id="fileInput" type="file" accept="image/*" onChange={handleImageUpload} style={{ display: 'none' }} />
-                                {selectedImage && (
-                                    <div>
-                                        <img src={selectedImage} alt="Imagem selecionada" />
-                                        <p>{selectedImage}</p>
-                                    </div>
-                                )} */}
-
-
-
-
-
                                 <div className={styles.dropDownCustom}>
                                     <Dropdown className={styles.styleDropDown} styleDropdownToggle={styles.styleDropdownToggle} styledropdownMenu={styles.styledropdownMenu} options={optionsState.slice(1)} defaultOption={"Estado"} onSelect={handleOptionStateChange} />
                                 </div>
-
                             </div>
                             <div className={styles.inputRight}>
                                 <div className={styles.dropDownCustom}>

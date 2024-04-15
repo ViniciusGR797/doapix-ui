@@ -10,14 +10,12 @@ interface ButtonCopyProps {
 
 const ButtonCopy: React.FC<ButtonCopyProps> = ({ attribute, value, ...rest }) => {
   const handleButtonCopyLinkClick = (text: string): void => {
-    const formattedValue = "https://www.doapix.com.br/" + text
-
     if (!navigator.clipboard) {
       toast.warning("O navegador não suporta copiar link");
       return;
     }
 
-    navigator.clipboard.writeText(formattedValue)
+    navigator.clipboard.writeText(text)
       .then(() => {
         toast.success("Link copiado");
       })
@@ -27,7 +25,7 @@ const ButtonCopy: React.FC<ButtonCopyProps> = ({ attribute, value, ...rest }) =>
   };
 
   const formatLink = (str: string): string => {
-    const formattedValue = "https://www.doapix.com.br/" + str.substring(0, 3) + "..."
+    const formattedValue = str.substring(0, 25) + "..."
 
     return formattedValue;
   };

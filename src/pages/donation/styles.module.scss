@@ -6,6 +6,33 @@
     height: 85vh;
 }
 
+.spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    svg {
+        color: var(--detalhe);
+        font-size: 48px; // Tamanho do spinner
+        animation: animate 2s infinite linear;
+    }
+
+    &:hover {
+        filter: brightness(1.10);
+    }
+}
+
+@keyframes animate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .donation {
     display: flex;
     flex-direction: column;
@@ -162,12 +189,23 @@
     height: 30%;
 }
 
+.editDonation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit {
+    color: var(--detalhe);
+}
+
 .footerMedia {
     display: none;
 }
 
 .loadingBar {
-    width: 100%;
+    width: 70%;
 }
 
 .button {
@@ -265,14 +303,14 @@
         border-style: solid;
         border-color: var(--fonteDark);
         background-color: transparent;
-    
+
         display: flex;
         flex-direction: column;
         text-align: justify;
-    
+
         padding: 1rem;
         gap: 1rem;
-    
+
         max-height: calc(35vh - 150px);
         overflow-y: auto;
     }
@@ -304,6 +342,7 @@
         margin: 1rem 0rem 0rem 0rem;
         gap: 2rem;
         width: 100%;
+        padding: 1rem;
     }
 
     .button {

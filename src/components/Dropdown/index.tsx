@@ -28,7 +28,10 @@ const Dropdown: React.FC<DropdownProps> = ({ options, onSelect, defaultOption, c
   return (
     <div className={`${styles.dropdown} ${className}`} {...rest} >
       <button className={`${styles.dropdownToggle} ${styleDropdownToggle}`} onClick={handleToggle}>
-        {selectedOption || defaultOption || 'Selecione uma opção'}
+        {/* {selectedOption || defaultOption || 'Selecione uma opção'} */}
+        <span className={styles.dropdownToggleText}>
+          {selectedOption || defaultOption || 'Selecione uma opção'}
+        </span>
         {isOpen ? <RiArrowDropUpLine size={35} /> : <RiArrowDropDownLine size={35} />}                     
       </button>
       {isOpen && (

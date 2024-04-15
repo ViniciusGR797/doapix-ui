@@ -18,5 +18,5 @@ export default function middleware(request: NextRequest){
 }
 
 export const config = {
-    matcher: ['/create-donation', '/update-donation', '/profile']
+    matcher: ['/create-donation', '/update-donation/:path*', '/profile']
 }

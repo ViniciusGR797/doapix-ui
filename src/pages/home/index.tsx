@@ -54,8 +54,8 @@ export default function Home() {
         setFilterCategory(option);
     };
 
-    const handleButtonDonationClick = () => {
-        Router.push('/donation')
+    const handleButtonDonationClick = (donation_id: string) => {
+        Router.push(`/donation/${donation_id}`)
     };
 
     const [data, setData] = useState<string[] | null>(null);
@@ -129,7 +129,7 @@ export default function Home() {
                                     name={item.name}
                                     description={item.description}
                                     percentage={Math.round((parseFloat(item.amount_raised.replace('$', '')) / parseFloat(item.goal.replace('$', ''))) * 100)}
-                                    onClick={handleButtonDonationClick}
+                                    onClick={() => handleButtonDonationClick(item.id)}
                                 />
                             ))}
                 </div>

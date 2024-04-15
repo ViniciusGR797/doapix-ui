@@ -6,6 +6,33 @@
     height: 85vh;
 }
 
+.spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    svg {
+        color: var(--detalhe);
+        font-size: 48px; // Tamanho do spinner
+        animation: animate 2s infinite linear;
+    }
+
+    &:hover {
+        filter: brightness(1.10);
+    }
+}
+
+@keyframes animate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .square {
     display: flex;
     flex-direction: column;
@@ -94,14 +121,10 @@
 }
 
 .input {
-    border-color: var(--fonteDark) !important;
+    border-color: var(--fundoSec) !important;
     max-width: 500px !important;
     margin: 0rem !important;
     width: 100% !important;
-}
-
-.input::placeholder {
-    color: var(--fonteDark) !important;
 }
 
 .inputRight {
@@ -128,8 +151,8 @@
 .styleDropdownToggle {
     width: 100% !important;
     max-width: 500px !important;
-    color: var(--fonteDark) !important;
-    border-color: var(--fonteDark) !important;
+    color: var(--fonte) !important;
+    border-color: var(--fundoSec) !important;
     height: 50px !important;
     align-items: center !important;
     font-size: 1rem !important;
@@ -146,26 +169,35 @@
     height: 72%;
     border-radius: 1rem;
     border-style: double;
-    border-color: var(--fonteDark);
+    border-color: var(--fundoSec);
     max-width: 500px;
     padding: 1rem 1.5rem 1rem 1.5rem;
-}
-
-.inputArea::placeholder {
-    color: var(--fonteDark);
 }
 
 .footer {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: right;
+    justify-content: space-between;
+    padding: 1rem 2rem 1rem 2rem;
+    gap: 2rem;
+}
+
+.deleteDonation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete {
+    color: var(--detalhe);
 }
 
 .button {
     width: 37.5%;
-    margin: 2rem;
-    max-width: 500px;
+    max-width: 430px;
+    justify-content: right;
 }
 
 @media (max-width: 740px) {
@@ -182,6 +214,7 @@
         width: 100%;
         height: 100vh;
         background-color: var(--fundo);
+        border-style: none;
     }
 
     .horizontalLine {
@@ -253,8 +286,6 @@
 
     .button {
         width: 75%;
-        margin: 0rem;
-        max-width: 500px;
     }
 }
 
@@ -270,10 +301,6 @@
     .body {
         height: 60%;
         margin: 0;
-    }
-
-    .button {
-        margin: 1rem;
     }
 }
 
