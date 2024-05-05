@@ -11,7 +11,7 @@ import Router, { useRouter } from "next/router";
 import TransactionService from '../../services/transactionService';
 import { FaSpinner } from 'react-icons/fa';
 import moment from 'moment-timezone';
-import io from 'socket.io-client';
+import Pusher from 'pusher-js';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -56,24 +56,25 @@ export default function Payment() {
     };
 
     useEffect(() => {
-        const websocket = () => {
+        const paymentNotification = () => {
             if (txid !== '' && txid !== undefined && typeof txid === 'string') {
-                const url = process.env.NEXT_PUBLIC_API_URL;
-                const newSocket = io(url as string); 
-                setSocket(newSocket);
-                newSocket.emit('txid', txid);
-    
-                newSocket.on('payment', (message: string) => {
-                    toast.success(message);
+                const key = process.env.NEXT_PUBLIC_PUSHER_KEY || '1234567890abcdefghij';
+                const cluster = process.env.NEXT_PUBLIC_PUSHER_CLUSTER || 'mt1';
+
+                const pusher = new Pusher(key, {
+                    cluster: cluster
                 });
-    
-                return () => {
-                    newSocket.disconnect(); 
-                };
+
+                const channel = pusher.subscribe('payment-notification-channel');
+                channel.bind('payment', function (data: any) {
+                    if (data.txid === txid) {
+                        toast.success(data.message);
+                    }
+                });
             }
         };
 
-        websocket();
+        paymentNotification();
     }, [txid]);
 
     useEffect(() => {

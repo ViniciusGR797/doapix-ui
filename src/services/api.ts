@@ -4,7 +4,7 @@ import Router from 'next/router';
 
 export function setupAPIClient(context = undefined) {
     const cookies = parseCookies(context);
-    const url = process.env.NEXT_PUBLIC_API_URL;
+    const url = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
 
     const api = axios.create({
         baseURL: url,
