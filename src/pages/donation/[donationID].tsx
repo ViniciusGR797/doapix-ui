@@ -19,20 +19,25 @@ import { BiEdit } from "react-icons/bi";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Donation() {
+    interface Comment {
+        alias: string;
+        message: string;
+    }
+
     interface Donation {
         id: string;
-        url_image: string;
         name: string;
+        url_image: string;
         description: string;
+        state: string;
+        category: string;
         goal: string;
         amount_raised: string;
-        state: string;
-        created_at: string;
         deadline: string;
-        category: string;
-        transactions: number;
-        comments: { [key: string]: string }[];
+        created_at: string;
         user_id: string;
+        transactions_count: number;
+        comments: Comment[];
     }
 
     const [loadingCreatePayment, setLoadingCreatePayment] = useState(false);
@@ -141,7 +146,7 @@ export default function Donation() {
                                             <KeyValueDisplay attribute={"Finaliza"} value={formatDate(data.deadline)} />
                                             <KeyValueDisplay attribute={"Arrecadado"} value={formatCurrency(parseFloat(data.amount_raised.replace('$', '')))} />
                                             <KeyValueDisplay attribute={"Meta"} value={formatCurrency(parseFloat(data.goal.replace('$', '')))} />
-                                            <KeyValueDisplay attribute={"Apoiadores"} value={data.transactions} />
+                                            <KeyValueDisplay attribute={"Apoiadores"} value={data.transactions_count} />
                                         </div>
 
                                     </div>
@@ -160,11 +165,9 @@ export default function Donation() {
                                                 <p>{data.description}</p>
                                             </div>
                                             <div className={styles.comments}>
-                                                {data.comments.map((comentario, index) => (
+                                                {data.comments.map((item, index) => (
                                                     <div key={index}>
-                                                        {Object.entries(comentario).map(([nome, texto]) => (
-                                                            <KeyValueDisplay attribute={nome ? nome : 'Anônimo'} value={texto} />
-                                                        ))}
+                                                        <KeyValueDisplay attribute={item.alias ? item.alias : 'Anônimo'} value={item.message} />
                                                     </div>
                                                 ))}
                                             </div>
@@ -181,11 +184,9 @@ export default function Donation() {
 
                             <div className={styles.commentsMedia}>
                                 <div className={styles.comments}>
-                                    {data.comments.map((comentario, index) => (
+                                    {data.comments.map((item, index) => (
                                         <div key={index}>
-                                            {Object.entries(comentario).map(([nome, texto]) => (
-                                                <KeyValueDisplay attribute={nome ? nome : 'Anônimo'} value={texto} />
-                                            ))}
+                                            <KeyValueDisplay attribute={item.alias ? item.alias : 'Anônimo'} value={item.message} />
                                         </div>
                                     ))}
                                 </div>
@@ -197,7 +198,7 @@ export default function Donation() {
                                     <div className={styles.metricsNormal}>
                                         <KeyValueDisplay attribute={"Arrecadado"} value={formatCurrency(parseFloat(data.amount_raised.replace('$', '')))} />
                                         <KeyValueDisplay attribute={"Meta"} value={formatCurrency(parseFloat(data.goal.replace('$', '')))} />
-                                        <KeyValueDisplay attribute={"Apoiadores"} value={data.transactions} />
+                                        <KeyValueDisplay attribute={"Apoiadores"} value={data.transactions_count} />
                                         <ButtonCopy attribute={"Compartilhar doação"} value={window.location.href} />
                                     </div>
                                     <div className={styles.metricsMedia}>

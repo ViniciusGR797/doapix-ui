@@ -3,10 +3,11 @@ import { destroyCookie, parseCookies } from "nookies";
 import Router from 'next/router';
 
 export function setupAPIClient(context = undefined) {
-    let cookies = parseCookies(context);
+    const cookies = parseCookies(context);
+    const url = process.env.NEXT_PUBLIC_API_URL;
 
     const api = axios.create({
-        baseURL: 'http://localhost:8080',
+        baseURL: url,
         headers: {
             Authorization: `Bearer ${cookies['@nextauth.token']}`
         }

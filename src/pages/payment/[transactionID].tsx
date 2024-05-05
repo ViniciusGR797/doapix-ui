@@ -2,18 +2,16 @@ import Head from "next/head";
 import { Inter } from "next/font/google";
 import HeaderLogo from "@/components/HeaderLogo";
 import styles from "./styles.module.scss";
-import { Input } from "@/components/Input";
 import Link from "next/link";
 import Image from "next/image";
 import { FiCopy, FiX } from "react-icons/fi";
-import { Button } from "@/components/Button";
-import ButtonCopy from "@/components/ButtonCopy";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import Router, { useRouter } from "next/router";
 import TransactionService from '../../services/transactionService';
 import { FaSpinner } from 'react-icons/fa';
 import moment from 'moment-timezone';
+import io from 'socket.io-client';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,6 +33,8 @@ export default function Payment() {
 
     const [isLoading, setIsLoading] = useState(true);
     const [data, setData] = useState<Transaction | null>(null);
+    const [txid, setTxid] = useState('');
+    const [socket, setSocket] = useState<any | null>(null);
 
     const router = useRouter()
     const { transactionID } = router.query;
@@ -52,8 +52,29 @@ export default function Payment() {
     const formatExpirationDate = (dateString: string): string => {
         const date = moment(dateString);
         date.subtract(3, 'hours');
-        return date.add(2, 'hours').tz("America/Sao_Paulo").format('DD/MM/YYYY HH:mm:ss');
+        return date.add(1, 'hours').tz("America/Sao_Paulo").format('DD/MM/YYYY HH:mm:ss');
     };
+
+    useEffect(() => {
+        const websocket = () => {
+            if (txid !== '' && txid !== undefined && typeof txid === 'string') {
+                const url = process.env.NEXT_PUBLIC_API_URL;
+                const newSocket = io(url as string); 
+                setSocket(newSocket);
+                newSocket.emit('txid', txid);
+    
+                newSocket.on('payment', (message: string) => {
+                    toast.success(message);
+                });
+    
+                return () => {
+                    newSocket.disconnect(); 
+                };
+            }
+        };
+
+        websocket();
+    }, [txid]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -66,6 +87,7 @@ export default function Payment() {
                     switch (response.status) {
                         case 200:
                             setData(response.data);
+                            setTxid(response.data.txid);
                             break;
                         case 400:
                         case 404:
