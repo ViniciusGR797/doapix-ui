@@ -144,8 +144,8 @@ export default function Donation() {
                                         <div className={styles.metricsDateMedia}>
                                             <KeyValueDisplay attribute={"Criada"} value={formatDate(data.created_at)} />
                                             <KeyValueDisplay attribute={"Finaliza"} value={formatDate(data.deadline)} />
-                                            <KeyValueDisplay attribute={"Arrecadado"} value={formatCurrency(parseFloat(data.amount_raised.replace('$', '')))} />
-                                            <KeyValueDisplay attribute={"Meta"} value={formatCurrency(parseFloat(data.goal.replace('$', '')))} />
+                                            <KeyValueDisplay attribute={"Arrecadado"} value={formatCurrency(parseFloat(data.amount_raised.replace(/[\$,]/g, '')))} />
+                                            <KeyValueDisplay attribute={"Meta"} value={formatCurrency(parseFloat(data.goal.replace(/[\$,]/g, '')))} />
                                             <KeyValueDisplay attribute={"Apoiadores"} value={data.transactions_count} />
                                         </div>
 
@@ -196,8 +196,8 @@ export default function Donation() {
                                 <div className={styles.metrics}>
 
                                     <div className={styles.metricsNormal}>
-                                        <KeyValueDisplay attribute={"Arrecadado"} value={formatCurrency(parseFloat(data.amount_raised.replace('$', '')))} />
-                                        <KeyValueDisplay attribute={"Meta"} value={formatCurrency(parseFloat(data.goal.replace('$', '')))} />
+                                        <KeyValueDisplay attribute={"Arrecadado"} value={formatCurrency(parseFloat(data.amount_raised.replace(/[\$,]/g, '')))} />
+                                        <KeyValueDisplay attribute={"Meta"} value={formatCurrency(parseFloat(data.goal.replace(/[\$,]/g, '')))} />
                                         <KeyValueDisplay attribute={"Apoiadores"} value={data.transactions_count} />
                                         <ButtonCopy attribute={"Compartilhar doação"} value={window.location.href} />
                                     </div>
@@ -210,7 +210,7 @@ export default function Donation() {
 
                                     <div className={styles.footerNormal}>
                                         <div className={styles.loadingBar}>
-                                            <LoadingBar percentage={Math.round((parseFloat(data.amount_raised.replace('$', '')) / parseFloat(data.goal.replace('$', ''))) * 100)} />
+                                            <LoadingBar percentage={Math.round((parseFloat(data.amount_raised.replace(/[\$,]/g, '')) / parseFloat(data.goal.replace(/[\$,]/g, ''))) * 100)} />
                                         </div>
                                         <div className={styles.editDonation} onClick={handleEditDonation} >
                                             <BiEdit size={40} className={styles.edit} />

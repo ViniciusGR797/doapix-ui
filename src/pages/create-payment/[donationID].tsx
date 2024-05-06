@@ -62,7 +62,7 @@ export default function CreateDonation() {
     }, [email]);
 
     useEffect(() => {
-        const numericValue = parseFloat(amount.replace(/R\$ /g, '').replace(/ /g, '').replace(',', '.'));
+        const numericValue = parseFloat(amount.replace(/[^0-9,]/g, '').replace(',', '.'));
         if (numericValue > 999999999999.99) {
             setAmount('R$  999 999 999 999,99');
         }
@@ -94,7 +94,7 @@ export default function CreateDonation() {
         const response = await TransactionService.createTransaction(
             alias,
             email,
-            amount.replace(/R\$ /g, '').replace(/ /g, '').replace(',', '.'),
+            amount.replace(/[^0-9,]/g, '').replace(',', '.'),
             message,
             donationID as string
         )

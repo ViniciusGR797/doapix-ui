@@ -128,7 +128,7 @@ export default function Home() {
                                     urlImage={item.url_image}
                                     name={item.name}
                                     description={item.description}
-                                    percentage={Math.round((parseFloat(item.amount_raised.replace('$', '')) / parseFloat(item.goal.replace('$', ''))) * 100)}
+                                    percentage={Math.round((parseFloat(item.amount_raised.replace(/[\$,]/g, '')) / parseFloat(item.goal.replace(/[\$,]/g, ''))) * 100)}
                                     onClick={() => handleButtonDonationClick(item.id)}
                                 />
                             ))}

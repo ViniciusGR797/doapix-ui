@@ -84,7 +84,7 @@ export default function CreateDonation() {
 
         const response = await DonationService.updateDonation(
             name,
-            goal.replace(/R\$ /g, '').replace(/ /g, '').replace(',', '.'),
+            goal.replace(/[^0-9,]/g, '').replace(',', '.'),
             url_image,
             deadline,
             state,
@@ -158,7 +158,7 @@ export default function CreateDonation() {
     }, [name]);
 
     useEffect(() => {
-        const numericValue = parseFloat(goal.replace(/R\$ /g, '').replace(/ /g, '').replace(',', '.'));
+        const numericValue = parseFloat(goal.replace(/[^0-9,]/g, '').replace(',', '.'));
         if (numericValue > 999999999999.99) {
             setGoal('R$  999 999 999 999,99');
         }
@@ -175,7 +175,7 @@ export default function CreateDonation() {
         if (data) {
             setUrlImgage(data.url_image)
             setName(data.name)
-            setGoal(data.goal)
+            setGoal(data.goal.replace(/[\$,]/g, ''))
             setDeadline(data.deadline.substring(0, 10))
             setState(data.state)
             setCategory(data.category)
@@ -268,7 +268,7 @@ export default function CreateDonation() {
                                     <FaRegTrashAlt size={40} className={styles.delete} />
                                 </div>
                                 <div className={styles.button}>
-                                    <Button type="button" loading={loadingCreateDonation} style={{ width: '100%' }} onClick={handleUpdateDonation} >Criar</Button>
+                                    <Button type="button" loading={loadingCreateDonation} style={{ width: '100%' }} onClick={handleUpdateDonation} >Atualizar</Button>
                                 </div>
                             </div>
                         </div>

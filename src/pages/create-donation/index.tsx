@@ -70,7 +70,7 @@ export default function CreateDonation() {
     }, [name]);
 
     useEffect(() => {
-        const numericValue = parseFloat(goal.replace(/R\$ /g, '').replace(/ /g, '').replace(',', '.'));
+        const numericValue = parseFloat(goal.replace(/[^0-9,]/g, '').replace(',', '.'));
         if (numericValue > 999999999999.99) {
             setGoal('R$  999 999 999 999,99');
         }
@@ -113,7 +113,7 @@ export default function CreateDonation() {
         
         const response = await DonationService.createDonation(
             name,
-            goal.replace(/R\$ /g, '').replace(/ /g, '').replace(',', '.'),
+            goal.replace(/[^0-9,]/g, '').replace(',', '.'),
             url_image,
             deadline,
             state,
